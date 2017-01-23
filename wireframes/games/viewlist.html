@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>GameDex</title>
+   </head>
+   <body>
+
+      <h1>GameDex</h1>
+      <h2>View games list</h2>
+      <p><a href="../index.html">Home</a></p>
+      <p><a href="../logout.html">Logout</a></p>
+
+      <form action="results.html"> 
+         <!-- Fake form action to demonstrate navigation. -->
+         <label>Search for an existing game entry:
+            <input type="search" name="query">
+         </label>
+         <input type="submit" value="Submit">
+      </form>
+
+      <a href="edit.html">Add a new game</a>
+
+      <table>
+         <tr>
+            <th>Name</th>
+            <th>Data</th>
+            <th>Actions</th>
+         </tr>
+         <tr>
+            <td>Baldur's Gate</td>
+            <td>42</td>
+            <td>
+               <a href="edit.html">Edit</a>
+               <a href="delete.html">Delete</a>
+            </td>
+         </tr>
+      </table>
+
+   </body>
+</html>

@@ -1,0 +1,13 @@
+# Ignore all
+*
+# Whitelist directories
+!*/
+# Whitelist filetypes
+!*.pdf
+!*.html
+!*.htm
+!*.css
+!*.js
+!*.txt
+# Whitelist gitignore
+!.gitignore
