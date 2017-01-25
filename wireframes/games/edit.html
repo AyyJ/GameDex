@@ -2,21 +2,42 @@
 <html>
    <head>
       <title>GameDex</title>
+      <meta charset="UTF-8">
    </head>
    <body>
 
       <h1>GameDex</h1>
-      <h2>Add a new game</h2>
-      <p><a href="index.html">Home</a></p>
-      <p><a href="viewlist.html">View Game List</a></p>
+      <h2>Edit an Existing Game</h2>
+      <nav>
+	    <p><a href="viewlist.html">All Games</a></p>
+	    <p><a href="add.html">Add Game</a></p>
+	    <p><a href="../friends/viewlist.html">Friends</a></p>
+	    <p><a href="../friends/viewGames.html">Friend's Games</a></p>
+      	<p><a href="../logout.html">Logout</a></p>
+      </nav>
 
       <form action="add.html">
          <!-- Fake form action to demonstrate navigation. -->
-         <label>Title: <input type="text" name="title"></label>
-         <label>Genre: <input type="text" name="genre"></label>
-         <label>Release Date: <input type="text" name="release_date"></label>
-         <input type="submit" value="Submit">
-         <input type="button" value="Cancel">
+         <label>Cover Art:</label> <textarea name="pathToFile" readonly="" placeholder="c:/fakepath"></textarea> <button name="browse" type="button" onclick="alert('Browsing for file')">Browse</button><br>
+         <label>Title: <input type="text" name="title"></label><br>
+         <label>Description: <input type="text" name="desc"></label><br>
+         <label>Release Date: <input type="text" name="reldate"></label>
+         <label>Purchase Price: <input type="text" name="price"></label><br>
+         <label>Game System: </label><select name="gamesystem" required>
+	         <option value="">Select Game System</option>
+	         	<optgroup label="Consoles">
+			 		<option value="1.1"> XBOX</option>
+			 		<option value="1.2">PlayStation</option>
+			 		<option value="1.3">Nintendo Switch</option>
+			 	<optgroup label="Table-top">
+	         <option value="2.1">Cards</option>
+         </select>
+         <label>Genre:</label><input type="text" name="genre"><br>
+         <label>Completed Playthough: <input type="checkbox" name="completed"></label>
+         <label>Still Functional: <input type="checkbox" name="isFunctional"></label><br>
+         <label>Notes</label><textarea name="notes"></textarea><br>
+         <button name="submit" type="submit" onclick="alert('Form submitted')">Submit</button>
+         <button name="submit" type="button" onclick="location.href='viewList.html';">Cancel</button>
       </form>
    
    </body>

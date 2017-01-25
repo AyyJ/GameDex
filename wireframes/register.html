@@ -2,19 +2,22 @@
 <html>
    <head>
       <title>GameDex</title>
+      <meta charset="UTF-8">
    </head>
    <body>
 
       <h1>GameDex</h1>
-      <h2>Register</h2>
+      <h2>Registration</h2>
       <p><a href="index.html">Home</a></p>
 
       <form>
-         <label>Username: <input type="text" name="username"></label>
-         <label>Password: <input type="password" name="password"></label>
-         <label>Nickname: <input type="text" name="nickname"></label>
-         <label>Email: <input type="email" name="email"></label>
-         <input type="submit" value="Submit">
+         <label>Username: <input type="text" name="username"></label><br>
+         <label>Password: <input type="password" name="password"></label><br>
+         <label>Confirm Password: <input type="password" name="cnfrmpw"></label><br>
+         <label>Nickname: <input type="text" name="nickname"></label><br>
+         <label>Email: <input type="email" name="email"></label><br>
+         <button name="submit" type="submit" onclick="alert('Form submitted')">Register</button>
+
       </form>
    
    </body>

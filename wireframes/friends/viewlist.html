@@ -2,13 +2,19 @@
 <html>
    <head>
       <title>GameDex</title>
+      <meta charset="UTF-8">
    </head>
    <body>
 
       <h1>GameDex</h1>
       <h2>View friends list</h2>
-      <p><a href="../index.html">Home</a></p>
-      <p><a href="../logout.html">Logout</a></p>
+      <nav>
+	    <p><a href="../games/viewlist.html">All Games</a></p>
+	    <p><a href="../games/add.html">Add Game</a></p>
+	    <p><a href="viewlist.html">Friends</a></p>
+	    <p><a href="viewGames.html">Friend's Games</a></p>
+      	<p><a href="../logout.html">Logout</a></p>
+      </nav>
 
       <form action="results.html"> 
          <!-- Fake form action to demonstrate navigation. -->
@@ -18,17 +24,22 @@
          <input type="submit" value="Submit">
       </form>
 
-      <table>
+       <table>
+	    <thead>
          <tr>
-            <th>Name</th>
-            <th>Data</th>
-            <th>Actions</th>
+            <th>Friend</th>
+            <th>Nickname</th>
+            <th>Action</th>
          </tr>
+	    </thead>
+	    <tbody>
          <tr>
-            <td>John Doe</td>
-            <td>42</td>
+            <td>Jimmy Neutron</td>
+            <td>GottaBlastKid1337</td>
             <td><a href="delete.html">Delete</a></td>
          </tr>
+	  	</tbody>
+	  	<tfoot></tfoot>
       </table>
 
    </body>
