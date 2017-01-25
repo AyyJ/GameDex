@@ -2,15 +2,93 @@
 <html>
    <head>
       <title>CSE 134B</title>
+      <link rel="stylesheet" href="sample.css" type="text/css">
    </head>
    <body>
-
+   	<main>
       <h1>Other HTML Tags</h1>
       <h2>Table of Contents</h2>
-      <ul>
-         <li>A page demonstrating HTML tags</li>
-         <li>Another one!</li>
-      </ul>
-       
+      <span class="tableofcontents"><ul>
+         <li><a href="#one">Leftovers from Sections <em>(4.3 in Spec)</em></a></li>
+         <li><a href="#two">Leftovers from Grouping Content <i>(4.4 in Spec)</i></a></li>
+         <li><a href="#three">Leftovers from Text-level Semantics <i>(4.5 in Spec)</i></a></li>
+         <li><a href="#four">Odds and Ends</a></li>
+      </ul></span>
+   	</main>
+      <hr>
+      <div id="one"><strong>Leftovers from Sections <em>(4.3 in Spec)</em></strong>
+	      <article>
+		      <p>This is an example of an article. I could write a ton of different text here, but we'll leave it at that.</p>
+		      	<section ><p> Within this article, I also have a section about puppies, because why not?</p></section>
+		      	<aside><p>But WAIT! There's more! I have an aside about my love for cats too...</p></aside>
+		
+			  	<section> <q>I think there's an echo in here.</q><br>
+					<q>Why do you say that?</q> asks Sam. <br>
+					<q>Watch, <b><u>ECHO</u></b></q>.<br>
+					<h4>Echo</h4><br>
+					<h5>Echo</h5><br>
+					<h6>Echo</h6><br>
+			  	</section>
+			  	
+			  	<address>9500 Gilman Drive, La Jolla CA, 92093 </address>
+	      </article>
+      </div>
+      <hr>
+	  <div id="two"><strong>Leftovers from Grouping Content <i>(4.4 in Spec)</i></strong>
+		  <article>
+			  <section>
+				  <p>What's the Hello World code for C?</p>
+				  <pre><code>
+#include &lt;stdio.h&gt;
+main(){
+  printf("Hello World \n");
+  return 0;
+}
+				  </code></pre>
+				  <cite>Adapted from tutorialspoint.com</cite>
+			  </section>
+			  
+			  <section>
+				  <p>One of my favorite quotes comes from The Two Tours by J.R.R. Tolkien.</p>
+				  <blockquote>"There is some good in this world, and it's worth fighting for"</blockquote>
+			  </section>
+			  
+			  <section>
+				  <p>To enroll in CSE 134B, you must take the following classes (in order by when you should take them)</p>
+				  <ol>
+					  <li>CSE 11</li>
+					  <li>CSE 12</li>
+					  <li>CSE 15L</li>
+					  <li>CSE 20</li>
+					  <li>CSE 21</li>
+					  <li>CSE 30</li>
+					  <li>CSE 100</li>
+				  </ol>
+				  <p>You can choose from the following departments:</p>
+				  <dl>
+					  <dt>UCSD</dt>
+					  <dd>CSE</dd>
+					  <dd><s>ECE</s></dd>
+					  <dd>MATH</dd>
+					  <dt>UCR</dt>
+					  <dd>CSE</dd>
+				  </dl>
+			  </section>
+			  
+			  <section>
+				  <p>It's common in computer science, and even the internet, to create nonsense comics. Here's one:</p>
+				  <figure><img src="comic.png" alt="HTML comic">
+				  <figcaption>Nonsense HTML comic</figcaption>
+				  </figure>
+			  </section>
+		  </article>
+	  </div>
+	  
+	  <div id="three"><strong>Leftovers from Text-level Semantics <i>(4.5 in Spec)</i></strong>
+		  <article>
+			  <section>
+				  <p>Text can come in many different sizes. <small>Small</small>, <sup>superscript</sup> or <sub>subscript</sub>. By the way, if you ever wanted to achieve superscript, you have to type <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd>. </p>
+				  <p><dfn>Superscript is a letter written or printed above the line</dfn></p>
+
    </body>
 </html>
