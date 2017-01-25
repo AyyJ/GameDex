@@ -9,5 +9,9 @@
 !*.css
 !*.js
 !*.txt
+!*.png
+!*.gif
+!*.jpg
+!*.jpeg
 # Whitelist gitignore
 !.gitignore
