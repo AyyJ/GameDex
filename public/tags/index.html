@@ -1,231 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>CSE 134B</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="sample.css" type="text/css">
-</head>
-
-<body>
-    <main>
-        <h1>Other HTML Tags</h1>
-        <h2>Table of Contents</h2>
-        <ul>
-            <li><a href="#one">Leftovers from Sections <em>(4.3 in Spec)</em></a></li>
-            <li><a href="#two">Leftovers from Grouping Content <i>(4.4 in Spec)</i></a></li>
-            <li><a href="#three">Leftovers from Text-level Semantics <i>(4.5 in Spec)</i></a></li>
-            <li><a href="#four">Odds and Ends</a></li>
-        </ul>
-    </main>
-    <hr>
-    <div id="one"><strong>Leftovers from Sections <em>(4.3 in Spec)</em></strong>
-        <article>
-            <h3>Article title</h3>
-            <p>This is an example of an article. I could write a ton of different text here, but we'll leave it at that.</p>
-            <section>
-                <h4>Section!</h4>
-                <p> Within this article, I also have a section about puppies, because why not?</p>
-            </section>
-            <aside>
-                <p>But WAIT! There's more! I have an aside about my love for cats too...</p>
-            </aside>
-
-            <q>I think there's an echo in here.</q>
-            <br>
-            <q>Why do you say that?</q> asks Sam.
-            <br>
-            <q>Watch, <b><u>ECHO</u></b></q>.
-            <br>
-            <h4>Echo</h4>
-            <br>
-            <h4>Echo</h4>
-            <br>
-            <h6>Echo</h6>
-            <br>
-
-
-            <address>9500 Gilman Drive, La Jolla CA, 92093 </address>
-        </article>
-    </div>
-    <hr>
-    <div id="two"><strong>Leftovers from Grouping Content <i>(4.4 in Spec)</i></strong>
-        <article>
-            <h3>4.4</h3>
-            <section>
-                <h4>Code</h4>
-                <p>What's the Hello World <span class="code">code</span> for C?</p>
-                <pre><code>
+   <head>
+      <title>CSE 134B</title>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="sample.css" type="text/css">
+   </head>
+   <body>
+   	<main>
+      <h1>Other HTML Tags</h1>
+	  <h2>Table of Contents</h2>
+      <ul>
+         <li><a href="#one">Leftovers from Sections <em>(4.3 in Spec)</em></a></li>
+         <li><a href="#two">Leftovers from Grouping Content <i>(4.4 in Spec)</i></a></li>
+         <li><a href="#three">Leftovers from Text-level Semantics <i>(4.5 in Spec)</i></a></li>
+         <li><a href="#four">Odds and Ends</a></li>
+      </ul>
+   	</main>
+      <hr>
+      <div id="one"><strong>Leftovers from Sections <em>(4.3 in Spec)</em></strong>
+	      <article><h3>Article title</h3>
+		      <p>This is an example of an article. I could write a ton of different text here, but we'll leave it at that.</p>
+		      	<section><h4>Section!</h4><p> Within this article, I also have a section about puppies, because why not?</p></section>
+		      	<aside><p>But WAIT! There's more! I have an aside about my love for cats too...</p></aside>
+		
+			  	<q>I think there's an echo in here.</q><br>
+					<q>Why do you say that?</q> asks Sam. <br>
+					<q>Watch, <b><u>ECHO</u></b></q>.<br>
+					<h4>Echo</h4><br>
+					<h4>Echo</h4><br>
+					<h6>Echo</h6><br>
+			  	
+			  	
+			  	<address>9500 Gilman Drive, La Jolla CA, 92093 </address>
+	      </article>
+      </div>
+      <hr>
+	  <div id="two"><strong>Leftovers from Grouping Content <i>(4.4 in Spec)</i></strong>
+		  <article><h3>4.4</h3>
+			  <section><h4>Code</h4>
+				  <p>What's the Hello World <span class="code">code</span> for C?</p>
+				  <pre><code>
 #include &lt;stdio.h&gt;
 main(){
   printf("Hello World \n");
   return 0;
 }
 				  </code></pre>
-                <cite>Adapted from tutorialspoint.com</cite>
-            </section>
+				  <cite>Adapted from tutorialspoint.com</cite>
+			  </section>
+			  
+			  <section><h4>Quotes</h4>
+				  <p>One of my favorite quotes comes from The Two Tours by J.R.R. Tolkien.</p>
+				  <blockquote>"There is some good in this world, and it's worth fighting for"</blockquote>
+			  </section>
+			  
+			  <section><h4>Enrollment</h4>
+				  <p>To enroll in CSE 134B, you must take the following classes (in order by when you should take them)</p>
+				  <ol>
+					  <li>CSE 11</li>
+					  <li>CSE 12</li>
+					  <li>CSE 15L</li>
+					  <li>CSE 20</li>
+					  <li>CSE 21</li>
+					  <li>CSE 30</li>
+					  <li>CSE 100</li>
+				  </ol>
+				  <p>You can choose from the following departments:</p>
+				  <dl>
+					  <dt>UCSD</dt>
+					  <dd>CSE</dd>
+					  <dd><s>ECE</s></dd>
+					  <dd>MATH</dd>
+					  <dt>UCR</dt>
+					  <dd>CSE</dd>
+				  </dl>
+			  </section>
+			  
+			  <section><h4>Comics</h4>
+				  <p>It's common in computer science, and even the internet, to create nonsense comics. Here's one:</p>
+				  <figure><img src="comic.png" alt="HTML comic">
+				  <figcaption>Nonsense HTML comic</figcaption>
+				  </figure>
+			  </section>
+		  </article>
+	  </div>
+	  
+	  <div id="three"><strong>Leftovers from Text-level Semantics <i>(4.5 in Spec)</i></strong>
+		  <article><h3> 4.5</h3>
+			  <section><h4>Text Size</h4>
+				  <p>Text can come in many different sizes. <small>Small</small>, <sup>superscript</sup> or <sub>subscript</sub>. By the way, if you ever wanted to achieve superscript, you have to type <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd>. </p>
+				  <p><dfn>Superscript is a letter written or printed above the line</dfn></p>
+			  </section>
 
-            <section>
-                <h4>Quotes</h4>
-                <p>One of my favorite quotes comes from The Two Tours by J.R.R. Tolkien.</p>
-                <blockquote>"There is some good in this world, and it's worth fighting for"</blockquote>
-            </section>
+           <section><h4>Abbreviation</h4>
+              <p>Before asking questions you should <dfn id="rtfm"><abbr title="Read The Friendly Manual">RTFM</abbr></dfn>!</p>
+ 
+             </section> 
 
-            <section>
-                <h4>Enrollment</h4>
-                <p>To enroll in CSE 134B, you must take the following classes (in order by when you should take them)</p>
-                <ol>
-                    <li>CSE 11</li>
-                    <li>CSE 12</li>
-                    <li>CSE 15L</li>
-                    <li>CSE 20</li>
-                    <li>CSE 21</li>
-                    <li>CSE 30</li>
-                    <li>CSE 100</li>
-                </ol>
-                <p>You can choose from the following departments:</p>
-                <dl>
-                    <dt>UCSD</dt>
-                    <dd>CSE</dd>
-                    <dd><s>ECE</s></dd>
-                    <dd>MATH</dd>
-                    <dt>UCR</dt>
-                    <dd>CSE</dd>
-                </dl>
-            </section>
+             <section><h4>Data and Time</h4>
+                <p>Here is a binary number represented with the data tag: <data value="10100111001">1337</data></p>
+                <p>This part of the document was written at <time>2017-01-25T09:44:00</time>.</p>
+             </section>
 
-            <section>
-                <h4>Comics</h4>
-                <p>It's common in computer science, and even the internet, to create nonsense comics. Here's one:</p>
-                <figure><img src="comic.png" alt="HTML comic">
-                    <figcaption>Nonsense HTML comic</figcaption>
-                </figure>
-            </section>
-        </article>
-    </div>
-
-    <div id="three"><strong>Leftovers from Text-level Semantics <i>(4.5 in Spec)</i></strong>
-        <article>
-            <h3> 4.5</h3>
-            <section>
-                <h4>Text Size</h4>
-                <p>Text can come in many different sizes. <small>Small</small>, <sup>superscript</sup> or <sub>subscript</sub>. By the way, if you ever wanted to achieve superscript, you have to type <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>+</kbd>. </p>
-                <p><dfn>Superscript is a letter written or printed above the line</dfn></p>
-            </section>
-
-            <section>
-                <h4>Abbreviation</h4>
-                <p>Before asking questions you should <dfn id="rtfm"><abbr title="Read The Friendly Manual">RTFM</abbr></dfn>!</p>
-
-            </section>
-
-            <section>
-                <h4>Data and Time</h4>
-                <p>Here is a binary number represented with the data tag:
-                    <data value="10100111001">1337</data>
-                </p>
-                <p>This part of the document was written at
-                    <time>2017-01-25T09:44:00-8:00</time>.</p>
-            </section>
-
-            <section>
-                <h4>Variable</h4>
+             <section><h4>Variable</h4>
                 <p><var>E</var>=<var>m</var><var>c</var><sup>2</sup> is a famous equation.</p>
-            </section>
+             </section>
 
-            <section>
-                <h4>Sample Output</h4>
+             <section><h4>Sample Output</h4>
                 <p>The output from a very simple computer program is <samp>Hello World!</samp></p>
-            </section>
+             </section>
 
-            <section>
-                <h4>Mark</h4>
-                <p>I'm a good at grammar. I wish the other students would fix
-                    <mark>they're</mark> documents.</p>
-            </section>
+             <section><h4>Mark</h4>
+                <p>I'm a good at grammar. I wish the other students would fix <mark>they're</mark> documents.</p>
+             </section>
 
-            <section>
-                <h4>Ruby annotations</h4>
+             <section><h4>Ruby annotations</h4>
                 <ruby>
-                    <rb>"base text component of a ruby annotation"</rb>
-                    <rp>"fallback text to be shown by user agents that don't support ruby annotations."</rp>
-                    <rtc>
-                        <rt>"the ruby text component of a ruby annotation."</rt>
-                    </rtc>
+                   <rb>"base <rt> text <rtc>component<rt> of<rp> a ruby annotation"
                 </ruby>
-            </section>
+             </section>
 
-            <section>
-                <h4>Bidirectionality</h4>
-                <p>
-                    <bdi>This text could go either way.</bdi>
-                </p>
+             <section><h4>Bidirectionality</h4>
+                <p><bdi>This text could go either way.</bdi></p>
                 <p><bdo dir="rtl">This text is backwards.</bdo></p>
-            </section>
+             </section>
 
-            <section>
-                <h4>Line break opportunity</h4>
+             <section><h4>Line break opportunity</h4>
                 <p>"So, how fast can you recite the Preamble?"</p>
-                <p>"We
-                    <wbr>the
-                    <wbr>People
-                    <wbr>of
-                    <wbr>the
-                    <wbr>United
-                    <wbr>States
-                    <wbr>,
-                    <wbr>in
-                    <wbr>Order
-                    <wbr>to
-                    <wbr>form
-                    <wbr>a
-                    <wbr>more
-                    <wbr>perfect
-                    <wbr>Union
-                    <wbr>,
-                    <wbr>establish
-                    <wbr>Justice
-                    <wbr>,
-                    <wbr>insure
-                    <wbr>domestic
-                    <wbr>Tranquility
-                    <wbr>,
-                    <wbr>provide
-                    <wbr>for
-                    <wbr>the
-                    <wbr>common
-                    <wbr>defence
-                    <wbr>,
-                    <wbr>promote
-                    <wbr>the
-                    <wbr>general
-                    <wbr>Welfare
-                    <wbr>,
-                    <wbr>and
-                    <wbr>secure
-                    <wbr>the
-                    <wbr>Blessings
-                    <wbr>of
-                    <wbr>Liberty
-                    <wbr>to
-                    <wbr>ourselves
-                    <wbr>and
-                    <wbr>our
-                    <wbr>Posterity
-                    <wbr>,
-                    <wbr>do
-                    <wbr>ordain
-                    <wbr>and
-                    <wbr>establish
-                    <wbr>this
-                    <wbr>Constitution
-                    <wbr>for
-                    <wbr>the
-                    <wbr>United
-                    <wbr>States
-                    <wbr>of
-                    <wbr>America. Whew!"</p>
-            </section>
+                <p>"We<wbr>the<wbr>People<wbr>of<wbr>the<wbr>United<wbr>States<wbr>,<wbr>in<wbr>Order<wbr>to<wbr>form<wbr>a<wbr>more<wbr>perfect<wbr>Union<wbr>,<wbr>establish<wbr>Justice<wbr>,<wbr>insure<wbr>domestic<wbr>Tranquility<wbr>,<wbr>provide<wbr>for<wbr>the<wbr>common<wbr>defence<wbr>,<wbr>promote<wbr>the<wbr>general<wbr>Welfare<wbr>,<wbr>and<wbr>secure<wbr>the<wbr>Blessings<wbr>of<wbr>Liberty<wbr>to<wbr>ourselves<wbr>and<wbr>our<wbr>Posterity<wbr>,<wbr>do<wbr>ordain<wbr>and<wbr>establish<wbr>this<wbr>Constitution<wbr>for<wbr>the<wbr>United<wbr>States<wbr>of<wbr>America. Whew!"</p>
+             </section>
 
             <section>
                 <h4>ins</h4>
@@ -248,9 +151,7 @@ main(){
                 <p>The &lt;iframe&gt; tag specifies an inline frame.</p>
 
                 <p>
-                    <iframe src="http://www.w3schools.com">
-                        <p>Your browser does not support iframes.</p>
-                    </iframe>
+                    <iframe src="http://www.w3schools.com"></iframe>
                 </p>
 
             </section>

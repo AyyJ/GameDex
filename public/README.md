@@ -6,4 +6,6 @@ We could not overcome warnings for the following tags due to cross-browser compa
 
 ```html
 <bdi>
+<table border=""> (should use CSS instead)
+<keygen>
 ```
