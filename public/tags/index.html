@@ -151,7 +151,7 @@ main(){
                 <p>The &lt;iframe&gt; tag specifies an inline frame.</p>
 
                 <p>
-                    <iframe src="http://www.w3schools.com"></iframe>
+                    <iframe src="../index.html"></iframe>
                 </p>
 
             </section>
@@ -181,7 +181,8 @@ main(){
                 <p>The &lt;param&gt; tag is used to define parameters for plugins embedded with an &lt;object&gt; element.</p>
 
                 <p>
-                    <object data="horse.wav">
+                    <object type="audio/wav">
+						<param name ="horse" value="horse.wav">
                         <param name="autoplay" value="true">
                     </object>
                 </p>
@@ -227,7 +228,7 @@ main(){
                 <h4>caption</h4>
                 <p>The &lt;caption&gt; tag defines a table caption and must be inserted immediately after the &lt;table&gt; tag. </p>
 
-                <table border="1px">
+                <table>
                     <caption>Monthly savings</caption>
                     <tr>
                         <th>Month</th>
@@ -249,10 +250,10 @@ main(){
                 <h4>colgroup</h4>
                 <p>The &lt;colgroup&gt; tag specifies a group of one or more columns in a table for formatting and is useful for applying styles to entire columns, instead of repeating the styles for each cell, for each row. </p>
 
-                <table border="1px">
+                <table>
                     <colgroup>
-                        <col span="2" style="background-color:red">
-                            <col style="background-color:yellow">
+                        <col span="2">
+                            <col>
                     </colgroup>
                     <tr>
                         <th>ISBN</th>
@@ -277,10 +278,10 @@ main(){
                 <h4>col</h4>
                 <p>The &lt;col&gt; tag specifies column properties for each column within a &lt;colgroup&gt; element. </p>
 
-                <table border="1px">
+                <table>
                     <colgroup>
-                        <col span="2" style="background-color:red">
-                            <col style="background-color:yellow">
+                        <col span="2">
+                            <col>
                     </colgroup>
                     <tr>
                         <th>ISBN</th>
