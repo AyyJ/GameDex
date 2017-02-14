@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>GameDex</title>
+      <meta charset="UTF-8">
+   </head>
+   <body>
+
+      <h1>GameDex</h1>
+      <h2>View friends list</h2>
+      <nav>
+	    <p><a href="../games/viewlist.html">All Games</a></p>
+	    <p><a href="../games/add.html">Add Game</a></p>
+	    <p><a href="viewlist.html">Friends</a></p>
+	    <p><a href="viewGames.html">Friend's Games</a></p>
+      	<p><a href="../logout.html">Logout</a></p>
+      </nav>
+
+      <form action="results.html"> 
+         <!-- Fake form action to demonstrate navigation. -->
+         <label>Search for a friend:
+            <input type="search" name="query">
+         </label>
+         <input type="submit" value="Submit">
+      </form>
+
+       <table>
+	    <thead>
+         <tr>
+            <th>Friend</th>
+            <th>Nickname</th>
+            <th>Action</th>
+         </tr>
+	    </thead>
+	    <tbody>
+         <tr>
+            <td>Jimmy Neutron</td>
+            <td>GottaBlastKid1337</td>
+            <td><a href="delete.html">Delete</a></td>
+         </tr>
+	  	</tbody>
+	  	<tfoot></tfoot>
+      </table>
+
+   </body>
+</html>
