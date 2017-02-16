@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html>
-   <head>
+<html lang="en">
+  <head>
       <title>GameDex</title>
-      <meta charset="UTF-8">
+	  <meta charset="utf-8">	  
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    </head>
    <body>
+	<div class="container">
 
       <h1>GameDex</h1>
+      <div class="row">
+	     <div class="col-sm-2"><a href="../games/viewlist.html">All Games</a></div>
+	    <div class="col-sm-2"><a href="../games/add.html">Add Game</a></div>
+	    <div class="col-sm-2"><a href="viewlist.html">Friends</a></div>
+	    <div class="col-sm-3"><a href="viewGames.html">Friend's Games</a></div>
+      	<div class="col-sm-3"><a href="../logout.html">Logout</a></div>
+      </div>	
       <h2>Add a friend search results</h2>
-      <nav>
-	    <p><a href="../games/viewlist.html">All Games</a></p>
-	    <p><a href="../games/add.html">Add Game</a></p>
-	    <p><a href="viewlist.html">Friends</a></p>
-	    <p><a href="viewGames.html">Friend's Games</a></p>
-      	<p><a href="../logout.html">Logout</a></p>
-      </nav>
 
-       <table>
+       <table class="table">
 	    <thead>
          <tr>
             <th>Friend</th>
@@ -33,6 +38,6 @@
 	  	</tbody>
 	  	<tfoot></tfoot>
       </table>
-
+	</div>
    </body>
 </html>

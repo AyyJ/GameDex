@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html>
-   <head>
+<html lang="en">
+  <head>
       <title>GameDex</title>
-      <meta charset="UTF-8">
+	  <meta charset="utf-8">	  
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    </head>
    <body>
-
+	<div class="container">
       <h1>GameDex</h1>
       <h2>Registration</h2>
       <p><a href="index.html">Home</a></p>
 
-      <form>
-         <label>Username: <input type="text" name="username"></label><br>
-         <label>Password: <input type="password" name="password"></label><br>
-         <label>Confirm Password: <input type="password" name="cnfrmpw"></label><br>
-         <label>Nickname: <input type="text" name="nickname"></label><br>
-         <label>Email: <input type="email" name="email"></label><br>
-         <button name="submit" type="submit" onclick="alert('Form submitted')">Register</button>
-
+      <form action="login.html" method="POST">
+	  <table class="table" style="width:50%;">
+         <tr><td><label>Username: </label></td><td><input type="text" name="username"></td></tr>
+         <tr><td><label>Password: </label></td><td><input type="password" name="password"></td></tr>
+         <tr><td><label>Confirm Password: </label></td><td><input type="password" name="cnfrmpw"></td></tr>
+         <tr><td><label>Nickname: </label></td><td><input type="text" name="nickname"></td></tr>
+         <tr><td><label>Email: </label></td><td><input type="email" name="email"></td></tr>
+         <tr><td colspan="2"><input type="submit" value="Register" onclick="alert('Form submitted')"></td></tr>
+		</table>
       </form>
-   
+   </div>
    </body>
 </html>

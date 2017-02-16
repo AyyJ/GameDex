@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html>
-   <head>
+<html lang="en">
+  <head>
       <title>GameDex</title>
-	  <meta charset="UTF-8">
-
+	  <meta charset="utf-8">	  
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    </head>
    <body>
-
+	<div class="container">
       <h1>GameDex</h1>
       <h2>Login</h2>
       <p><a href="index.html">Home</a></p>
 
-      <form>
-         <label><strong>Username:</strong> <input type="text" name="username"></label>
-         <label><strong>Password:</strong> <input type="password" name="password"></label>
-         <button name="submit" type="submit" onclick="alert('Form submitted')">Submit</button>
+      <form action="games/viewlist.html" method="POST">
+	  <table class="table" style="width:50%;">
+         <tr><td><label><strong>Username: </strong></label></td><td> <input type="text" name="username"></td></tr>
+         <tr><td><label><strong>Password:</strong></label></td><td> <input type="password" name="password"></td></tr>
+         <tr><td><input value="Submit" type="submit" onclick="alert('Form submitted')"></td></tr>
+		 </table>
       </form>
 	  <footer> &copy; GameDex 2017 </footer>
+	  </div>
    </body>
 </html>

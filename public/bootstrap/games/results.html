@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html>
-   <head>
+<html lang="en">
+  <head>
       <title>GameDex</title>
-      <meta charset="UTF-8">
+	  <meta charset="utf-8">	  
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    </head>
    <body>
+	<div class="container">
 
       <h1>GameDex</h1>
+	  <div class="row">
+	     <div class="col-sm-2"><a href="viewlist.html">All Games</a></div>
+	    <div class="col-sm-2"><a href="add.html">Add Game</a></div>
+	    <div class="col-sm-2"><a href="../friends/viewlist.html">Friends</a></div>
+	    <div class="col-sm-3"><a href="../friends/viewGames.html">Friend's Games</a></div>
+      	<div class="col-sm-3"><a href="../logout.html">Logout</a></div>
+      </div>	
       <h2>Find a game search results</h2>
-      <nav>
-	    <p><a href="viewlist.html">All Games</a></p>
-	    <p><a href="add.html">Add Game</a></p>
-	    <p><a href="../friends/viewlist.html">Friends</a></p>
-	    <p><a href="../friends/viewGames.html">Friend's Games</a></p>
-      	<p><a href="../logout.html">Logout</a></p>
-      </nav>
 
       <p>Don't see your game listed here? <a href="edit.html">Add</a> it to the database!</p>
 
-      <table>
+      <table class="table">
 	    <thead>
          <tr>
             <th>Name</th>
@@ -37,6 +42,6 @@
 	  	</tbody>
 	  	<tfoot></tfoot>
       </table>
-
+	</div>
    </body>
 </html>
