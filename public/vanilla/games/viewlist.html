@@ -3,28 +3,27 @@
    <head>
       <title>GameDex</title>
       <meta charset="UTF-8">
+       <link rel="stylesheet" href="games.css">
    </head>
    <body>
 
       <h1>GameDex</h1>
-      <h2>View games list</h2>
+      <h2>All Games</h2>
       <nav>
 	    <p><a href="viewlist.html">All Games</a></p>
 	    <p><a href="add.html">Add Game</a></p>
 	    <p><a href="../friends/viewlist.html">Friends</a></p>
 	    <p><a href="../friends/viewGames.html">Friend's Games</a></p>
       	<p><a href="../logout.html">Logout</a></p>
-      </nav>
+      </nav><br>
 
       <form action="results.html"> 
          <!-- Fake form action to demonstrate navigation. -->
          <label>Search for an existing game entry:
             <input type="search" name="query">
          </label>
-         <input type="submit" value="Submit">
+         <input name="submit" type="submit" value="Submit">
       </form>
-
-      <a href="edit.html">Add a new game</a>
 
       <table>
 	    <thead>
@@ -43,9 +42,19 @@
             <td><img src="coverexample.png" alt="Bauldr's Gate Cover Art"></td>
             <td>Action</td>
             <td>
-               <a href="edit.html">Edit</a>
-               <a href="delete.html">Delete</a>
+                <button name="edit" type="button" onclick="window.location.href='edit.html'">Edit</button>
+                <button name="delete" type="button" onclick="window.location.href='delete.html'">Delete</button>
             </td>
+         </tr>
+         <tr>
+             <td>Baldur's Gate</td>
+             <td>Windows</td>
+             <td><img src="coverexample.png" alt="Bauldr's Gate Cover Art"></td>
+             <td>Action</td>
+             <td>
+                 <button name="edit" type="button" onclick="window.location.href='edit.html'">Edit</button>
+                 <button name="delete" type="button" onclick="window.location.href='delete.html'">Delete</button>
+             </td>
          </tr>
 	  	</tbody>
 	  	<tfoot></tfoot>

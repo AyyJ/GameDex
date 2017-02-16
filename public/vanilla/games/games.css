@@ -1,0 +1,51 @@
+body{
+    font-family: Georgia, serif;
+    background: url("../background.png");
+}
+h1, h2{
+    text-align: center;
+}
+h2{
+    font-size: medium;
+}
+nav{
+    margin: auto;
+    padding: 0;
+    display: inline-block;
+
+}
+nav > p{
+    float: left;
+    border: solid 1px black;
+    margin: 2px;
+}
+nav > p > a{
+    display: block;
+    text-align: center;
+    padding: 10px 12px;
+}
+table{
+    border-spacing: 0;
+    border: solid 1px black;
+
+}
+th, td{
+    padding: 10px;
+    text-align: left;
+    border-bottom: solid 1px black;
+    border-right: solid 1px black;
+}
+th{
+    background-color: #D9D2D0;
+    padding: 5px;
+}
+tr:nth-child(even){
+    background-color: #F2EDEB;
+}
+button, #submit{
+    padding: 5px 15px;
+
+}
+form{
+    display: block;
+}

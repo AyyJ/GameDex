@@ -1,0 +1,30 @@
+body{
+    font-family: Georgia, serif;
+    background: url("/background.png");
+}
+input{
+    border: solid 2px black;
+    padding: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+form > p{
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+form{
+    border: solid 2px black;
+    width: 300px;
+    padding: 50px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 40%;
+}
+button{
+    padding: 10px 30px;
+
+}
