@@ -3,20 +3,42 @@
    <head>
       <title>GameDex</title>
       <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="global.css" type="text/css">
    </head>
    <body>
-
+      <h1 class="pagetitle">GameDex</h1>
+      <p>Create an account</p>
+      
       <form>
-         <h1>Create an account</h1>
-         <input type="text" name="username" placeholder="Username"><br>
-         <input type="password" name="password" placeholder="Password"><br>
-         <input type="password" name="cnfrmpw" placeholder="Confirm Password"><br>
-         <input type="text" name="nickname" placeholder="Display Name"><br>
-         <input type="email" name="email" placeholder="Email"><br>
-         <button name="submit" type="button" onclick="window.location.href='games/viewlist.html'">Register</button>
-         <button name="cancel" type="button" onclick="window.location.href='index.html'">Cancel</button>
+         <table>
+            <tr>
+               <td><label for="username">Username</label></td>
+               <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+               <td><label for="password">Password</label></td>
+               <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+               <td><label for="cnfrmpw">Confirm Password</label></td>
+               <td><input type="password" name="cnfrmpw"></td>
+            </tr>
+            <tr>
+               <td><label for="nickname">Display Name</label></td>
+               <td><input type="text" name="nickname"></td>
+            </tr>
+            <tr>
+               <td><label for="email">Email</label></td>
+               <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+               <td class="centered" colspan="2">
+                  <button name="submit" type="button" onclick="window.location.href='games/viewlist.html'">Register</button>
+                  <button name="cancel" type="button" onclick="window.location.href='index.html'">Cancel</button>
+               </td>
+            </tr>
+         </table>
       </form>
-   
    </body>
 </html>
