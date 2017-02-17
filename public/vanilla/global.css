@@ -7,13 +7,23 @@ body{
     text-align: center;
     padding: 5px;
 }
+nav { 
+   text-size: 120%;
+   margin: 5px auto 5px;
+}
+nav > a {
+   padding: 5px;
+}
 h1{
     font-weight: bold;
     font-size: 200%;
     margin: 5px auto 5px;
 }
-form > p {
-   font-size: 120%;
+h2 {
+   font-size: 150%;
+}
+p {
+   text-size: 120%;
 }
 form{
    display: inline-block;
@@ -24,7 +34,7 @@ label {
    font-size: 120%;
 }
 input{
-   font-size: 120%;
+   font-size: 110%;
    border: solid 1px black;
 }
 button{
@@ -41,4 +51,6 @@ td {
 .pagetitle {
    margin-top: 10%;
 }
-
+.smallfont {
+   font-size: 55%;
+}

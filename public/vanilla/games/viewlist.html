@@ -3,61 +3,62 @@
    <head>
       <title>GameDex</title>
       <meta charset="UTF-8">
-       <link rel="stylesheet" href="games.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="../lists.css">
    </head>
    <body>
-
+      <header>
       <h1>GameDex</h1>
-      <h2>All Games</h2>
+      <h2>Your Games</h2>
       <nav>
-	    <p><a href="viewlist.html">All Games</a></p>
-	    <p><a href="add.html">Add Game</a></p>
-	    <p><a href="../friends/viewlist.html">Friends</a></p>
-	    <p><a href="../friends/viewGames.html">Friend's Games</a></p>
-      	<p><a href="../logout.html">Logout</a></p>
-      </nav><br>
+	         <a href="add.html">Add Game</a>
+	         <a href="../friends/viewlist.html">Friends</a>
+	         <a href="../friends/viewGames.html">Friends' Games</a>
+            <a href="../logout.html">Logout</a>
+         </nav>
+      </header>
 
-      <form action="results.html"> 
-         <!-- Fake form action to demonstrate navigation. -->
-         <label>Search for an existing game entry:
-            <input type="search" name="query">
-         </label>
-         <input name="submit" type="submit" value="Submit">
+      <form> 
+         <label for="query">Search for an existing game <input type="search" name="query">
+         <button name="submit" type="button" onclick="window.location.href='results.html'">Submit</button>
       </form>
 
       <table>
-	    <thead>
          <tr>
             <th>Name</th>
-            <th>Game System</th>
+            <th>Platform</th>
             <th>Cover Art</th>
             <th>Genre</th>
-            <th>Edit / Delete </th>
+            <th></th>
          </tr>
-	    </thead>
-	    <tbody>
          <tr>
             <td>Baldur's Gate</td>
             <td>Windows</td>
             <td><img src="coverexample.png" alt="Bauldr's Gate Cover Art"></td>
-            <td>Action</td>
+            <td>RPG</td>
             <td>
-                <button name="edit" type="button" onclick="window.location.href='edit.html'">Edit</button>
-                <button name="delete" type="button" onclick="window.location.href='delete.html'">Delete</button>
+                <button name="edit" type="button" class="smallbutton" onclick="window.location.href='edit.html'">
+                   Edit
+                </button>
+                <button name="delete" type="button" class="smallbutton" onclick="window.location.href='delete.html'">
+                   Delete
+                </button>
             </td>
          </tr>
          <tr>
              <td>Baldur's Gate</td>
              <td>Windows</td>
              <td><img src="coverexample.png" alt="Bauldr's Gate Cover Art"></td>
-             <td>Action</td>
+             <td>RPG</td>
              <td>
-                 <button name="edit" type="button" onclick="window.location.href='edit.html'">Edit</button>
-                 <button name="delete" type="button" onclick="window.location.href='delete.html'">Delete</button>
+                 <button name="edit" type="button" class="smallbutton" onclick="window.location.href='edit.html'">
+                    Edit
+                 </button>
+                 <button name="delete" type="button" class="smallbutton" onclick="window.location.href='delete.html'">
+                    Delete
+                 </button>
              </td>
          </tr>
-	  	</tbody>
-	  	<tfoot></tfoot>
       </table>
 
    </body>
