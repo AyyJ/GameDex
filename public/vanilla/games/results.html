@@ -3,41 +3,38 @@
    <head>
       <title>GameDex</title>
       <meta charset="UTF-8">
-       <link rel="stylesheet" href="games.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="../lists.css">
 
    </head>
    <body>
-
+      <header>
       <h1>GameDex</h1>
       <h2>Find a game search results</h2>
       <nav>
-	    <p><a href="viewlist.html">All Games</a></p>
-	    <p><a href="add.html">Add Game</a></p>
-	    <p><a href="../friends/viewlist.html">Friends</a></p>
-	    <p><a href="../friends/viewGames.html">Friend's Games</a></p>
-      	<p><a href="../logout.html">Logout</a></p>
+	      <a href="viewlist.html">Your Games</a>
+	      <a href="add.html">Add Game</a>
+	      <a href="../friends/viewlist.html">Friends</a>
+	      <a href="../friends/viewGames.html">Friends' Games</a>
+         <a href="../logout.html">Logout</a>
       </nav>
+      </header>
 
-      <p>Don't see your game listed here? <a href="edit.html">Add</a> it to the database!</p>
+      <p>Don't see your game listed here? <a href="add.html">Add</a> it to the database!</p>
 
       <table>
-	    <thead>
          <tr>
             <th>Name</th>
-            <th>Game System</th>
+            <th>Platform</th>
             <th>Cover Art</th>
             <th>Genre</th>
          </tr>
-	    </thead>
-	    <tbody>
          <tr>
             <td>Baldur's Gate</td>
             <td>Windows</td>
             <td><img src="coverexample.png" alt="Bauldr's Gate Cover Art"></td>
-            <td>Action</td>
+            <td>RPG</td>
          </tr>
-	  	</tbody>
-	  	<tfoot></tfoot>
       </table>
 
    </body>

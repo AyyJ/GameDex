@@ -28,6 +28,12 @@ nav > a {
 form{
    display: inline-block;
 }
+th {
+   background: #cccccc; 
+}
+.even {
+   background: #e6e6e6;
+}
 
 
 
