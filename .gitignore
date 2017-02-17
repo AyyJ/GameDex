@@ -13,5 +13,6 @@
 !*.gif
 !*.jpg
 !*.jpeg
-# Whitelist gitignore
+# Whitelist files
 !.gitignore
+!README
