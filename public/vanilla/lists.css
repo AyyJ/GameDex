@@ -7,6 +7,9 @@ body {
     text-align: center;
     padding: 5px;
 }
+header {
+   width: 100%;
+}
 h1 {
     font-weight: bold;
     font-size: 200%;
@@ -27,12 +30,20 @@ nav > a {
 }
 form{
    display: inline-block;
+   width: 100%;
+}
+table {
+   width: 100%;
 }
 th {
    background: #cccccc; 
 }
 .even {
    background: #e6e6e6;
+}
+.tablecontainer {
+   width: 100%;
+   display: inline-block;
 }
 
 
