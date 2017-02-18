@@ -21,8 +21,26 @@ Areas for improvement:
 
 
 
-               -= Desktop, no throttling =-
-Page                       | Download Size   | Render time
+         -= Desktop, no throttling, local host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |     65.2 KB     |  128 ms
+Games viewlist page        |     87.0 KB     |  128 ms
+Delete Game Confirmation   |     65.1 KB     |  134 ms
+-------------------------------------------------------------
+
+
+      -= Desktop, Regular 3G (simulated), local host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |     65.2 KB     |  989 ms
+Games viewlist page        |     87.0 KB     |  1.2 s
+Delete Game Confirmation   |     65.1 KB     |  979 ms
+-------------------------------------------------------------
+
+
+-= LG Nexus 4 (Physical Device), no throttling, local host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -30,8 +48,8 @@ Delete Game Confirmation   |                 |
 -------------------------------------------------------------
 
 
-            -= Desktop, Regular 3G (simulated) =-
-Page                       | Download Size   | Render time
+-= LG Nexus 4 (Physical Device), Regular 3G (simulated), local host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -39,8 +57,26 @@ Delete Game Confirmation   |                 |
 -------------------------------------------------------------
 
 
-      -= LG Nexus 4 (Physical Device), no throttling =-
-Page                       | Download Size   | Render time
+         -= Desktop, no throttling, remote host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |     64.3 KB     |  312 ms
+Games viewlist page        |     85.5 KB     |  501 ms
+Delete Game Confirmation   |     64.3 KB     |  465 ms
+-------------------------------------------------------------
+
+
+      -= Desktop, Regular 3G (simulated), remote host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |     64.3 KB     |  1.06s
+Games viewlist page        |     85.6 KB     |  1.28 s
+Delete Game Confirmation   |     64.3 KB     |  983 ms
+-------------------------------------------------------------
+
+
+-= LG Nexus 4 (Physical Device), no throttling, remote host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -48,8 +84,8 @@ Delete Game Confirmation   |                 |
 -------------------------------------------------------------
 
 
-   -= LG Nexus 4 (Physical Device), Regular 3G (simulated) =-
-Page                       | Download Size   | Render time
+-= LG Nexus 4 (Physical Device), Regular 3G (simulated), remote host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -86,8 +122,26 @@ Areas for improvement: While clean and light weight the design is
                        amounts of wasted whitespace between elements.
                        
 
-               -= Desktop, no throttling =-
-Page                       | Download Size   | Render time
+        -= Desktop, no throttling, local host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |     2.7 KB      |   25 ms
+Games viewlist page        |    24.3 KB      |   62 ms
+Delete Game Confirmation   |     1.8 KB      |   29 ms
+-------------------------------------------------------------
+
+
+    -= Desktop, Regular 3G (simulated), local host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |     2.7 KB      |   254 ms
+Games viewlist page        |    24.3 KB      |   463 ms
+Delete Game Confirmation   |     1.8 KB      |   240 ms
+-------------------------------------------------------------
+
+
+-= LG Nexus 4 (Physical Device), no throttling, local host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -95,8 +149,8 @@ Delete Game Confirmation   |                 |
 -------------------------------------------------------------
 
 
-            -= Desktop, Regular 3G (simulated) =-
-Page                       | Download Size   | Render time
+-= LG Nexus 4 (Physical Device), Regular 3G (simulated), local host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -104,8 +158,26 @@ Delete Game Confirmation   |                 |
 -------------------------------------------------------------
 
 
-      -= LG Nexus 4 (Physical Device), no throttling =-
-Page                       | Download Size   | Render time
+         -= Desktop, no throttling, remote host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |      1.3 KB     |   93 ms
+Games viewlist page        |     22.4 KB     |  129 ms
+Delete Game Confirmation   |      1.5 KB     |   97 ms
+-------------------------------------------------------------
+
+
+      -= Desktop, Regular 3G (simulated), remote host =-
+Page                       | Download Size   | Load time
+-------------------------------------------------------------
+Registration form          |     1.3 KB     |  240 ms
+Games viewlist page        |    22.5 KB     |  471 ms
+Delete Game Confirmation   |     1.5 KB     |  242 ms
+-------------------------------------------------------------
+
+
+-= LG Nexus 4 (Physical Device), no throttling, remote host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -113,8 +185,8 @@ Delete Game Confirmation   |                 |
 -------------------------------------------------------------
 
 
-   -= LG Nexus 4 (Physical Device), Regular 3G (simulated) =-
-Page                       | Download Size   | Render time
+-= LG Nexus 4 (Physical Device), Regular 3G (simulated), remote host =-
+Page                       | Download Size   | Load time
 -------------------------------------------------------------
 Registration form          |                 |
 Games viewlist page        |                 |
@@ -131,8 +203,10 @@ Delete Game Confirmation   |                 |
   - Google Chrome version 56.0.2924.87 (64-bit)
   - MacBook Pro (Retina, 13-inch, Mid 2014)
   - Apple macOS version 10.12.3
-  - LAN: 802.11ac wifi
-  - WAN: Cox Communications
-  - LG Nexus 4 (connected to wifi & USB)
+  - LG Nexus 4
   - Google Android version
-- Data was collected against the Google Firebase hosted version of the site.
+- Data from remotely hosted (i.e., Firebase) content was collected in
+  the following environment:
+  - Same hardware and software as above
+  - LAN: 802.11ac
+  - WAN: Cox Communications (Santee, CA)
