@@ -5,37 +5,37 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" type="text/css" href="../lists.css">
+
    </head>
    <body>
       <header>
          <h1>GameDex</h1>
-         <h2>View friends list</h2>
+         <h2>View GottaBlastKid1337's games list</h2>
          <nav>
             <a href="../games/viewlist.html">Your Games</a>
             <a href="../games/add.html">Add Game</a>
             <a href="viewlist.html">Friends</a>
-            <a href="viewGames.html">Friends' Games</a>
+            <a href="#">Friends' Games</a>
             <a href="../logout.html">Logout</a>
          </nav>
       </header>
 
-      <form> 
-         <label for="query">Search for a friend <input type="search" name="query">
-         <button name="submit" type="button" onclick="window.location.href='results.html'">Submit</button>
-      </form>
-
-      <table>
+      <div style="display:inline-block">
+         <table>
             <tr>
-               <th>Friend</th>
-               <th>Nickname</th>
-               <th>Action</th>
+               <th>Name</th>
+               <th>Platform</th>
+               <th>Cover Art</th>
+               <th>Genre</th>
             </tr>
             <tr>
-               <td>Jimmy Neutron</td>
-               <td>GottaBlastKid1337</td>
-               <td><a href="delete.html">Delete</a></td>
+               <td>Baldur's Gate</td>
+               <td>Windows</td>
+               <td><img src="../games/coverexample.png" alt="Bauldr's Gate Cover Art"></td>
+               <td>RPG</td>
             </tr>
-      </table>
+         </table>
+      </div>
 
    </body>
 </html>
