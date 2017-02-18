@@ -15,7 +15,7 @@ your skills as a web designer for an online portfolio, you’d be
 better off writing all your CSS from scratch. The point we’re
 trying to make here is that it depends. It depends on the time
 you have/need, the purpose of the CSS, and who the audience is.
-In the end, choose what feels right.
+In the end, choose what best fits the task at hand.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
