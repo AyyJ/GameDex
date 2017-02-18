@@ -16,3 +16,4 @@
 # Whitelist files
 !.gitignore
 !README
+!favicon.ico

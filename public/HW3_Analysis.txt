@@ -1,0 +1,138 @@
+======================================
+||   Introduction / General Notes   ||
+======================================
+[[[ a reasoned discussion of when you would want to employ each 
+approach. Try not to declare one way the winner, instead present 
+thoughts on how and why each approach you take would be valid for
+one situation or another. ]]]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+======================================
+||            Bootstrap             ||
+======================================
+Time to add CSS formatting:
+Total lines of CSS code:
+
+Comments:
+
+
+Areas for improvement:
+
+
+
+               -= Desktop, no throttling =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+
+            -= Desktop, Regular 3G (simulated) =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+
+      -= LG Nexus 4 (Physical Device), no throttling =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+
+   -= LG Nexus 4 (Physical Device), Regular 3G (simulated) =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+======================================
+||              Vanilla             || 
+======================================
+Vanilla
+=========
+Time to add CSS formatting: ~6 hours
+Total CSS lines of code: 106 
+
+Comments: Most of the time was spent learning what was available
+          and how to apply it. I found it was easiest to refactor
+          most of the pages to utilize tables, which in hindsight
+          makes sense since we're mostly displaying tables. 
+
+          Given the very small size and limited functionality of 
+          our site we used a responsive web design (despite the 
+          professor's reservations of the design pattern). It was 
+          a trade off that allowed us to make a single version of 
+          the site. With the combination of our very basic, light 
+          weight design, the looming deadline, and other 
+          responsibilities outside of CSE134B a single version of 
+          the site was the most favorable outcome.
+
+Areas for improvement: While clean and light weight the design is 
+                       visually boring with virtually no images or
+                       interesting use of color. There is also large
+                       amounts of wasted whitespace between elements.
+                       
+
+               -= Desktop, no throttling =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+
+            -= Desktop, Regular 3G (simulated) =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+
+      -= LG Nexus 4 (Physical Device), no throttling =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+
+   -= LG Nexus 4 (Physical Device), Regular 3G (simulated) =-
+Page                       | Download Size   | Render time
+-------------------------------------------------------------
+Registration form          |                 |
+Games viewlist page        |                 |
+Delete Game Confirmation   |                 |
+-------------------------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+======================================
+||          General Notes           ||
+======================================
+- Data reported above was generated via Google Chrome Developer tools
+  in the following environment:
+  - Google Chrome version 56.0.2924.87 (64-bit)
+  - MacBook Pro (Retina, 13-inch, Mid 2014)
+  - Apple macOS version 10.12.3
+  - LAN: 802.11ac wifi
+  - WAN: Cox Communications
+  - LG Nexus 4 (connected to wifi & USB)
+  - Google Android version
+- Data was collected against the Google Firebase hosted version of the site.
