@@ -1,10 +1,21 @@
 ======================================
 ||   Introduction / General Notes   ||
 ======================================
-[[[ a reasoned discussion of when you would want to employ each 
-approach. Try not to declare one way the winner, instead present 
-thoughts on how and why each approach you take would be valid for
-one situation or another. ]]]
+As seen in the data below, Bootstrap has far less setup time
+than its vanilla equivalent. Most of that is due to not having
+to write rules from scratch. While our setup time for vanilla
+was already off to a bad start with us not knowing much CSS,
+it still shows there is a significant amount of thought required
+to achieve the desired result from scratch. Looking purely at
+the numbers, one would assert that Bootstrap is the way to go,
+but that’s a naïve approach because one size does not fit all.
+If you are throwing together a quick demo to show someone,
+perhaps Bootstrap would be what you use. If you are showcasing
+your skills as a web designer for an online portfolio, you’d be
+better off writing all your CSS from scratch. The point we’re
+trying to make here is that it depends. It depends on the time
+you have/need, the purpose of the CSS, and who the audience is.
+In the end, choose what feels right.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
