@@ -23,15 +23,27 @@ In the end, choose what best fits the task at hand.
 ||            Bootstrap             ||
 ======================================
 Time to add CSS formatting: ~3 hours
+Total added/modified lines of code: 165
 
 Comments: Had to refactor existing HTML to make it compatible with 
           BootStrap. Also, had to gain familiarity with the specifics
-          of the BootStrap framework.
+          of the BootStrap framework. It was good to see that so many
+	  CSS styles are available in BootStrap framework and so we were
+	  able to enhance the look and feel of the UI easily. BootStrap 
+	  framework seems good for a quick website development, possibly
+	  for prototyping. In case, we want a custom style, which may not
+	  be available in framework, we can add custom style as needed. It 
+	  was also good to see that how the GUI is responsive to the various
+	  size of devices without much additional code as framework is able
+	  to take care of those. Overall, BootStrap framework is good for 
+	  those who are beginner in CSS and want to create a website quickly
+	  with standard styles available in the framework.
 
-Areas for improvement: The resulting site, while clean and funtional, 
+Areas for improvement: The resulting site, while clean and functional, 
                        is still generic looking and it is recognizable
                        as BootStrap. In other words, it doesn't stand
-                       out from potential competitors.
+                       out from potential competitors where we need more
+		       custom styles to make website look much better,
 
 
          -= Desktop, no throttling, local host =-
@@ -109,7 +121,7 @@ Comments: Most of the time was spent learning what was available
           the site. With the combination of our very basic, light 
           weight design, the looming deadline, and other 
           responsibilities outside of CSE134B a single version of 
-          the site was the most favorable outcome.
+          the site was the most favourable outcome.
 
 Areas for improvement: While clean and light weight the design is 
                        visually boring with virtually no images or
