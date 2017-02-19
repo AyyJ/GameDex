@@ -22,14 +22,16 @@ In the end, choose what best fits the task at hand.
 ======================================
 ||            Bootstrap             ||
 ======================================
-Time to add CSS formatting:
-Total lines of CSS code:
+Time to add CSS formatting: ~3 hours
 
-Comments:
+Comments: Had to refactor existing HTML to make it compatible with 
+          BootStrap. Also, had to gain familiarity with the specifics
+          of the BootStrap framework.
 
-
-Areas for improvement:
-
+Areas for improvement: The resulting site, while clean and funtional, 
+                       is still generic looking and it is recognizable
+                       as BootStrap. In other words, it doesn't stand
+                       out from potential competitors.
 
 
          -= Desktop, no throttling, local host =-
