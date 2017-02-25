@@ -17,3 +17,7 @@
 !.gitignore
 !README
 !favicon.ico
+
+public/vanilla/\.DS_Store
+
+public/\.DS_Store
