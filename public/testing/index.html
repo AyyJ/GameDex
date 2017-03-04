@@ -10,115 +10,10 @@
 <body>
 	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 	<script src="js/base.js"></script>
-
+   <script src="js/abr.js"></script>
 	<script type="text/javascript">
-		 /**
-		 * Handles the sign up button press.
-		 */
-		 function handleSignUp() {
-			var email = document.getElementById('email').value;
-			var password = document.getElementById('password').value;
-			if (email.length < 4) {
-				alert('Please enter an email address.');
-				return;
-			}
-			if (password.length < 4) {
-				alert('Please enter a password.');
-				return;
-			}
-			// Sign in with email and pass.
-			// [START createwithemail]
-			firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-				// Handle Errors here.
-				var errorCode = error.code;
-				var errorMessage = error.message;
-				// [START_EXCLUDE]
-				if (errorCode == 'auth/weak-password') {
-					alert('The password is too weak.');
-				} else {
-					alert(errorMessage);
-				}
-				console.log(error);
-				// [END_EXCLUDE]
-			});
-			// [END createwithemail]
-		}
-		/**
-		 * Handles the sign in button press.
-		 */
-		 function toggleSignIn() {
-			if (firebase.auth().currentUser) {
-				firebase.auth().signOut();
-			} else {
-				var email = document.getElementById('email').value;
-				var password = document.getElementById('password').value;
-				if (email.length < 4) {
-					alert('Please enter an email address.');
-					return;
-				}
-				if (password.length < 4) {
-					alert('Please enter a password.');
-					return;
-				}
-				firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-					// Handle Errors here.
-					var errorCode = error.code;
-					var errorMessage = error.message;
-					if (errorCode === 'auth/wrong-password') {
-						alert('Wrong password.');
-					} else {
-						alert(errorMessage);
-					}
-					console.log(error);
-				});
-				document.getElementById('signIn').addEventListener('click', toggleSignIn, false);
-			}
-		}
-
-		function toggleGoogle() {
-			if (!firebase.auth().currentUser) {
-				var provider = new firebase.auth.GoogleAuthProvider();
-				provider.addScope('https://www.googleapis.com/auth/plus.login');
-				firebase.auth().signInWithPopup(provider).then(function(result) {
-					var user = result.user;
-
-				}).catch(function(error) {
-					// Handle Errors here.
-					var errorCode = error.code;
-					var errorMessage = error.message;
-					// The email of the user's account used.
-					var email = error.email;
-					// The firebase.auth.AuthCredential type that was used.
-					var credential = error.credential;
-					if (errorCode === 'auth/account-exists-with-different-credential') {
-						alert('You have already signed up with a different auth provider for that email.');
-						// If you are using multiple auth providers on your app you should handle linking
-						// the user's accounts here.
-					} else {
-						console.error(error);
-					}
-				});
-			}
-		}
-
-		/**
-		 * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-		 *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-		 *    out, and that is where we update the UI.
-		 */
-		 function initApp() {
-			firebase.auth().onAuthStateChanged(function(user) {
-				if (user) {
-					window.location.replace("viewlist.html");
-				}
-			});
-			document.getElementById('signIn').addEventListener('click', toggleSignIn, false);
-			document.getElementById('googleLogin').addEventListener('click', toggleGoogle, false);
-			document.getElementById('register').addEventListener('click', handleSignUp, false);
-
-		}
 		window.onload = function() {
-			initApp();
+			abr.initIndexPage();
 		};
 		</script>
 		<h1 class="pagetitle">GameDex</h1>
@@ -126,8 +21,8 @@
 		<form>
 			<table>
 			 <tr>
-				<td><label for="username">Username</label></td>
-				<td><input type="text" name="username" id="email"></td>
+				<td><label for="email">Email</label></td>
+				<td><input type="text" name="email" id="email"></td>
 			</tr>
 			<tr>
 				<td><label for="password">Password</label></td>
@@ -135,7 +30,7 @@
 			</tr>
 			<tr>
 				<td class="centered" colspan="10">
-				 <button id="signIn" name="login" type="button">Login</button>
+				 <button id="login" name="login" type="button">Login</button>
 				 <button name="register" type="button" onclick="window.location.href='register.html'">Register</button><br>
 				 <a class="googleLogin" id="googleLogin"></a>
 			 </td>
