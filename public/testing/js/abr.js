@@ -46,5 +46,11 @@ abr.createFirebaseUser = function() {
 
 /* Function: Add the custom user information. */
 abr.createGamedexUser = function() {
+   var displayName = document.getElementById('displayName').value;
 
+   var userListRef = firebase.database().ref('users/' + firebase.auth().currentUser.uid);
+   var userRef = userListRef.push();
+   userRef.set({
+      'display_name' : displayName
+   });
 }
