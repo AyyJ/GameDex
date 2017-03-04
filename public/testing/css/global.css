@@ -1,0 +1,76 @@
+* { 
+ margin: 0;
+}
+body{
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: center;
+  padding: 5px;
+}
+nav { 
+ text-size: 120%;
+ margin: 5px auto 5px;
+}
+nav > a {
+ padding: 5px;
+}
+h1{
+  font-weight: bold;
+  font-size: 200%;
+  margin: 5px auto 5px;
+}
+h2 {
+ font-size: 150%;
+}
+p {
+ text-size: 120%;
+}
+form > p {
+ margin: 5px;
+}
+form{
+ display: inline-block;
+ text-align: left;
+ margin: 5px auto 5px;
+}
+label {
+ font-size: 120%;
+}
+input{
+ font-size: 110%;
+ border: solid 1px black;
+}
+button{
+ padding: 10px 30px;
+ font-size: 110%;
+}
+td {
+ padding-top: 5px;
+ padding-bottom: 5px;
+}
+.centered {
+ text-align: center;
+}
+.pagetitle {
+ margin-top: 10%;
+}
+.smallfont {
+ font-size: 55%;
+}
+.googleLogin{
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+  width: 191px;
+  height: 46px;
+  background-image: url("../images/google_normal.png");
+
+}
+.googleLogin:hover{
+  background-image: url("../images/google_focus.png");
+}
+.googleLogin.visited{
+  background-image: url("../images/google_pressed.png");
+}

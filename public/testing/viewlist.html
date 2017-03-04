@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>GameDex</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://gamedex-2d485.firebaseapp.com/vanilla/lists.css">
+     <title>GameDex View</title>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="css/global.css" type="text/css">
    </head>
-   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCf9mEv6fjrsEk9ZryrfGZv-ygiBhpVt1Y",
-    authDomain: "gamedex-2d485.firebaseapp.com",
-    databaseURL: "https://gamedex-2d485.firebaseio.com",
-    storageBucket: "gamedex-2d485.appspot.com",
-    messagingSenderId: "1057082821990"
-  };
-  firebase.initializeApp(config);
-</script>
+
+   <body>
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script src="js/base.js"></script>
 
   <script type="text/javascript">
 
@@ -42,7 +34,9 @@
           // [START_EXCLUDE]
           document.getElementById('personal').textContent = displayName + '\'s Games';
           // [END_EXCLUDE]
-        }
+        } else {
+          window.location.replace("index.html");
+      }
       });
       // [END authstatelistener]
       document.getElementById('signout').addEventListener('click', signOut, false);
@@ -54,7 +48,7 @@
         document.getElementById('personal').textContent = 'Signed Out';
 
         // [END signout]
-      }
+      } 
 
     }
 
@@ -73,7 +67,7 @@
 
       <form> 
          <label for="query">Search for an existing game <input type="search" name="query">
-         <button name="submit" type="button" onclick="window.location.href='results.html'">Submit</button>
+         <button name="submit" type="button">Submit</button>
       </form>
 
       <table>
@@ -90,10 +84,10 @@
             <td><img src="https://gamedex-2d485.firebaseapp.com/vanilla/games/coverexample.png" alt="Bauldr's Gate Cover Art"></td>
             <td>RPG</td>
             <td>
-                <button name="edit" type="button" class="smallbutton" onclick="window.location.href='edit.html'">
+                <button name="edit" type="button" class="smallbutton" >
                    Edit
                 </button>
-                <button name="delete" type="button" class="smallbutton" onclick="window.location.href='delete.html'">
+                <button name="delete" type="button" class="smallbutton" >
                    Delete
                 </button>
             </td>
@@ -104,10 +98,10 @@
              <td><img src="https://gamedex-2d485.firebaseapp.com/vanilla/games/coverexample.png" alt="Bauldr's Gate Cover Art"></td>
              <td>RPG</td>
              <td>
-                 <button name="edit" type="button" class="smallbutton" onclick="window.location.href='edit.html'">
+                 <button name="edit" type="button" class="smallbutton" >
                     Edit
                  </button>
-                 <button name="delete" type="button" class="smallbutton" onclick="window.location.href='delete.html'">
+                 <button name="delete" type="button" class="smallbutton" >
                     Delete
                  </button>
              </td>

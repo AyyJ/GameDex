@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GameDex Register</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/global.css" type="text/css">
+</head>
+
+<body>
+	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+	<script src="js/base.js"></script>
+	<script type="text/javascript">
+     /**
+     * Handles the sign up button press.
+     */
+     function handleSignUp() {
+     	var email = document.getElementById('email').value;
+     	var displayName = document.getElementById('displayName').value;
+     	var username = document.getElementById('username').value;
+     	var password = document.getElementById('password').value;
+     	var password2 = document.getElementById('password2').value;
+
+     	if (email.length < 4) {
+     		alert('Please enter an email address.');
+     		return;
+     	}
+     	if (password.length < 4) {
+     		alert('Please enter a password.');
+     		return;
+     	}
+     	if (password != password2) {
+     		alert('Passwords do not match.');
+     	}
+      // Sign in with email and pass.
+      // [START createwithemail]
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/weak-password') {
+        	alert('The password is too weak.');
+        } else {
+        	alert(errorMessage);
+        }
+        console.log(error);
+        // [END_EXCLUDE]
+    });
+      // [END createwithemail]
+  }
+
+    /**
+     * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+     *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+     *    out, and that is where we update the UI.
+     */
+     function initApp() {
+     	firebase.auth().onAuthStateChanged(function(user) {
+     		if (user) {
+     			// TODO: Move up into creation block so we can capture to display name
+     			// at time of registration
+
+     			createNewUser(user.uid, user.displayName, user.email);
+     			window.location.replace("viewlist.html");
+     		}
+     	});
+     	document.getElementById('register').addEventListener('click', handleSignUp, false);
+
+     }
+     window.onload = function() {
+     	initApp();
+     };
+
+     function createNewUser(userid, display, email) {
+     	firebase.database().ref('users/' + userid).push({
+     		display_name: display,
+     		email: email,
+     	});
+     }
+     </script>
+
+     <h1 class="pagetitle">GameDex</h1>
+     <p>Create an account</p>
+
+     <form>
+     	<table>
+     		<tr>
+     			<td><label for="username">Username</label></td>
+     			<td><input id="username" type="text" name="username"></td>
+     		</tr>
+     		<tr>
+     			<td><label for="password">Password</label></td>
+     			<td><input id="password" type="password" name="password"></td>
+     		</tr>
+     		<tr>
+     			<td><label for="cnfrmpw">Confirm Password</label></td>
+     			<td><input id="password2" type="password" name="cnfrmpw"></td>
+     		</tr>
+     		<tr>
+     			<td><label for="nickname">Display Name</label></td>
+     			<td><input id="displayName" type="text" name="nickname"></td>
+     		</tr>
+     		<tr>
+     			<td><label for="email">Email</label></td>
+     			<td><input id="email" type="email" name="email"></td>
+     		</tr>
+     		<tr>
+     			<td class="centered" colspan="2">
+     				<button name="submit" type="button" id="register">Register</button>
+     				<button name="cancel" type="button" onclick="window.location.href='index.html'">Cancel</button>
+     			</td>
+     		</tr>
+     	</table>
+     </form>
+ </body>
+ </html>
