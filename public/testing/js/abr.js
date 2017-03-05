@@ -116,9 +116,53 @@ abr.createFirebaseUser = function() {
 abr.createGamedexUser = function() {
    var displayName = document.getElementById('displayName').value;
 
-   var userListRef = firebase.database().ref('users/' + firebase.auth().currentUser.uid);
-   var userRef = userListRef.push();
+   var userRef = firebase.database().ref('users/' + firebase.auth().currentUser.uid);
    userRef.set({
       'display_name' : displayName
    });
+}
+
+
+/*
+ * Function: Add the custom user information.
+ */
+ abr.initViewPage = function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+         abr.loadDisplayName(user);
+         document.getElementById('signout').addEventListener('click', abr.logout, false);
+      } else {
+         window.location.replace('index.html');
+      }
+   });
+}
+
+
+/*
+ * Function: Get the user's display name from the appropriate source.
+ */
+abr.loadDisplayName = function(user) {
+   if (user) {
+      if (user.displayName) {
+         document.getElementById('personal').textContent = user.displayName + '\'s Games';
+      } else {
+         var userFirebasePath = 'users/' + firebase.auth().currentUser.uid;
+         var userRef = firebase.database().ref(userFirebasePath);
+         userRef.once('value').then(function(snapshot) {
+            var displayName = snapshot.child('display_name').val();
+            document.getElementById('personal').textContent = displayName + '\'s Games';
+         });
+      }
+   }
+}
+
+
+/*
+ * Function: Add the custom user information.
+ */
+ abr.logout = function() {
+    if (firebase.auth().currentUser) {
+      firebase.auth().signOut();
+      document.getElementById('personal').textContent = 'Signed Out';
+   }
 }
