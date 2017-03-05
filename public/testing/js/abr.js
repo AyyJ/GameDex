@@ -124,13 +124,14 @@ abr.createGamedexUser = function() {
 
 
 /*
- * Function: Add the custom user information.
+ * Function: Initializes the games view list page.
  */
  abr.initViewPage = function() {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
          abr.loadDisplayName(user);
          document.getElementById('signout').addEventListener('click', abr.logout, false);
+         document.getElementById('addGame').addEventListener('click', abr.handleAddGameButton, false);
       } else {
          window.location.replace('index.html');
       }
@@ -165,4 +166,58 @@ abr.loadDisplayName = function(user) {
       firebase.auth().signOut();
       document.getElementById('personal').textContent = 'Signed Out';
    }
+}
+
+
+/*
+ * Function: Handles the add game button click.
+ */
+abr.handleAddGameButton = function() {
+   firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+         window.location.replace('editgame.html');
+      } else {
+         window.location.replace('index.html');
+      }
+   });
+}
+
+
+/*
+ * Function: Initializes the Add/Edit game page.
+ */
+abr.initEditGamePage = function() {
+   firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+         document.getElementById('signout').addEventListener('click', abr.logout, false);
+         document.getElementById('submit').addEventListener('click', abr.writeGameData, false);
+         document.getElementById('cancel').addEventListener('click', abr.handleCancelButton, false);
+      } else {
+         window.location.replace('index.html');
+      }
+   });
+}
+
+
+/*
+ * Function:
+ */
+abr.writeGameData = function() {
+   //get reference
+
+   //set data at reference
+}
+
+
+/*
+ * Function: Handles the edit game cancel button click.
+ */
+abr.handleCancelButton = function() {
+   firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+         window.location.replace('viewlist.html');
+      } else {
+         window.location.replace('index.html');
+      }
+   });
 }

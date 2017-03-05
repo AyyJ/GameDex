@@ -4,7 +4,7 @@
       <title>GameDex</title>
       <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="stylesheet" href="../global.css">
+       <link rel="stylesheet" href="css/global.css">
    </head>
    <body>
       <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
@@ -24,22 +24,12 @@
          <a href="viewlist.html">Your Games</a>
          <a href="../friends/viewlist.html">Friends</a>
          <a href="../friends/viewgames.html">Friends' Games</a>
-         <a href="../logout.html">Logout</a>
+         <a href="index.html" id="signout">Logout</a>
       </nav>
       </header>
 
       <form>
       <table>
-
-         <tr>
-         <td>
-            <label for="pathToFile">Cover Art</label>
-         </td>
-         <td>
-            <input name="pathToFile" type="file" class="smallfont">
-         </td>
-         </tr>
-
          <tr>
          <td>
             <label for="title">Title</label>
@@ -126,6 +116,15 @@
          </tr>
 
          <tr>
+         <td>
+            <label for="pathToFile">Cover Art</label>
+         </td>
+         <td>
+            <input name="pathToFile" type="file" class="smallfont">
+         </td>
+         </tr>
+
+         <tr>
             <td>
 
             <label for="notes">Notes</label>
@@ -137,8 +136,8 @@
 
          <tr>
             <td colspan="2" class="centered">
-               <button name="submit" type="submit" onclick="location.href='viewlist.html'">Submit</button>
-               <button name="submit" type="button" onclick="location.href='viewlist.html'">Cancel</button>
+               <button id="submit" name="submit" type="button">Submit</button>
+               <button id="cancel" name="submit" type="button">Cancel</button>
             </td>
          </tr>
       </table>
