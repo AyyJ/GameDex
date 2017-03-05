@@ -5,6 +5,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="css/global.css" type="text/css">
+   <link rel="stylesheet" href="css/lists.css" type="text/css">
 </head>
 
 <body>
@@ -12,9 +13,9 @@
    <script src="js/base.js"></script>
    <script src="js/abr.js"></script>
    <script type="text/javascript">
-      window.onload = function() {
-         abr.initViewPage();
-      };
+   window.onload = function() {
+      abr.initViewPage();
+   };
    </script>
    <body>
       <header>
@@ -25,11 +26,15 @@
          </nav>
       </header>
 
-      <form>
-         <label for="query">Search for an existing game <input type="search" name="query">
-            <button name="submit" type="button">Submit</button>
-         </form>
 
+      <form>
+         <span>Add a game</span>
+         <button id="addGame" type="button">Add</button>
+      </form>
+
+
+
+      <div class="tablecontainer">
          <table>
             <tr>
                <th>Name</th>
@@ -67,6 +72,7 @@
                </td>
             </tr>
          </table>
+      </div>
 
-      </body>
-      </html>
+   </body>
+   </html>

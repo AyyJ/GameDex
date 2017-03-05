@@ -1,4 +1,4 @@
-* { 
+* {
  margin: 0;
 }
 body{
@@ -6,8 +6,10 @@ body{
   font-size: 16px;
   text-align: center;
   padding: 5px;
+}header {
+   width: 100%;
 }
-nav { 
+nav {
  text-size: 120%;
  margin: 5px auto 5px;
 }
@@ -47,6 +49,13 @@ button{
 td {
  padding-top: 5px;
  padding-bottom: 5px;
+}
+table {
+   width: 100%;
+}
+.tablecontainer {
+   width: 100%;
+   display: inline-block;
 }
 .centered {
  text-align: center;
