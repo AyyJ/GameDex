@@ -190,7 +190,7 @@ abr.initEditGamePage = function() {
    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
          document.getElementById('signout').addEventListener('click', abr.logout, false);
-         document.getElementById('submit').addEventListener('click', abr.writeGameData, false);
+         document.getElementById('submit').addEventListener('click', abr.processGameData, false);
          document.getElementById('cancel').addEventListener('click', abr.handleCancelButton, false);
       } else {
          window.location.replace('index.html');
@@ -202,10 +202,32 @@ abr.initEditGamePage = function() {
 /*
  * Function:
  */
-abr.writeGameData = function() {
-   //get reference
+abr.processGameData = function() {
+   var title = document.getElementById('game_title').value;
+   var desc = document.getElementById('game_desc').value;
+   var reldate = document.getElementById('game_reldate').value;
+   var price = document.getElementById('game_price').value;
+   var genre = document.getElementById('game_genre').value;
 
-   //set data at reference
+   abr.writeGameData(title, desc, reldate, price, genre);
+
+   window.location.replace('viewlist.html');
+}
+
+
+/*
+ * Function:
+ */
+abr.writeGameData = function(g_title, g_desc, g_reldate, g_price, g_genre) {
+   var gameListRef = firebase.database().ref('games');
+   var newGameRef = gameListRef.push();
+   newGameRef.set({
+      title: g_title,
+      desc: g_desc,
+      reldate: g_reldate,
+      price: g_price,
+      genre: g_genre
+   });
 }
 
 
