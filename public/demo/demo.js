@@ -216,8 +216,21 @@ demo.createCustomUser = function() {
 
 
 /*
- * Function: Processes the add text button.
+ * Function: Processes the add text button click.
  */
 demo.handleAddTextButton = function() {
-   alert('Clicked!');
+   var textString = document.getElementById('text_input').value;
+   demo.writeDemoData(textString);
+}
+
+
+/*
+ * Function: Writes the demo text data to the database.
+ */
+demo.writeDemoData = function(textString) {
+   var demoListRef = firebase.database().ref('demo');
+   var newDemoTextRef = demoListRef.push();
+   newDemoTextRef.set({
+      data: textString
+   });
 }
