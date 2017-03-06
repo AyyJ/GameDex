@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>CRUD Demo</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+   <script src="demo.js"></script>
+   <script type="text/javascript">
+   window.onload = function() {
+      demo.initApp();
+   };
+   </script>
+   <h1>CRUD Demonstration Application</h1>
+   <h2>Welcome, <span id="spa-user">Guest</span></h2>
+   <div id="spa-content">
+      <h3>Text CRUD</h3>
+      <input id="new_text" type="text">
+      <button id="add_new_text" type="button">Add</button>
+      <h3>Image CRUD</h3>
+      <p>Coming soon...</p>
+   </div>
+</body>
