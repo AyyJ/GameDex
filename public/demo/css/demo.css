@@ -1,0 +1,17 @@
+.googleLogin{
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: auto;
+  width: 191px;
+  height: 46px;
+  background-image: url("../images/google_normal.png");
+
+}
+.googleLogin:hover{
+  background-image: url("../images/google_focus.png");
+}
+.googleLogin.visited{
+  background-image: url("../images/google_pressed.png");
+}

@@ -22,7 +22,7 @@ var demo = {};
  * Function: Initializes the SPA page.
  */
 demo.initApp = function() {
-   document.getElementById('add_new_text').addEventListener('click', demo.handleAddTextButton, false);
+   
 }
 
 
