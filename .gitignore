@@ -23,3 +23,5 @@ public/vanilla/\.DS_Store
 public/\.DS_Store
 
 public/testing/\.DS_Store
+
+public/demo/\.DS_Store
