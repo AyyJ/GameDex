@@ -190,7 +190,7 @@ abr.initEditGamePage = function() {
    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
          document.getElementById('signout').addEventListener('click', abr.logout, false);
-         document.getElementById('submit').addEventListener('click', abr.processGameData, false);
+         document.getElementById('submit').addEventListener('click', abr.handleEditGameSubmitButton, false);
          document.getElementById('cancel').addEventListener('click', abr.handleCancelButton, false);
       } else {
          window.location.replace('index.html');
@@ -200,9 +200,10 @@ abr.initEditGamePage = function() {
 
 
 /*
- * Function:
+ * Function: When the submit button on the edit game page is clicked this
+ *           function processes the request.
  */
-abr.processGameData = function() {
+abr.handleEditGameSubmitButton = function() {
    var title = document.getElementById('game_title').value;
    var desc = document.getElementById('game_desc').value;
    var reldate = document.getElementById('game_reldate').value;
@@ -216,7 +217,7 @@ abr.processGameData = function() {
 
 
 /*
- * Function:
+ * Function: Writes the game data to the database.
  */
 abr.writeGameData = function(g_title, g_desc, g_reldate, g_price, g_genre) {
    var gameListRef = firebase.database().ref('games');
