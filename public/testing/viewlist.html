@@ -16,6 +16,12 @@
    window.onload = function() {
       abr.initViewPage();
    };
+
+   function edit(game_title, game_genre)
+   {
+		url = 'editgame.html?game_title=' + encodeURIComponent(game_title) +'&game_genre=' + encodeURIComponent(game_genre);
+		document.location.href = url;
+   }
    </script>
    <body>
       <header>
@@ -49,7 +55,7 @@
                <td><img src="https://gamedex-2d485.firebaseapp.com/vanilla/games/coverexample.png" alt="Baldur's Gate Cover Art"></td>
                <td>RPG</td>
                <td>
-                  <button name="edit" type="button" class="smallbutton" >
+                  <button name="edit" type="button" class="smallbutton" onClick="edit('Baldurs Gate','RPG');">
                      Edit
                   </button>
                   <button name="delete" type="button" class="smallbutton" >
@@ -63,7 +69,7 @@
                <td><img src="https://gamedex-2d485.firebaseapp.com/vanilla/games/coverexample.png" alt="Bauldr's Gate Cover Art"></td>
                <td>RPG</td>
                <td>
-                  <button name="edit" type="button" class="smallbutton" >
+                  <button name="edit" type="button" class="smallbutton" onClick="edit('Baldurs Gate','RPG');">
                      Edit
                   </button>
                   <button name="delete" type="button" class="smallbutton" >
