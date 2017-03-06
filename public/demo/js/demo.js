@@ -234,3 +234,11 @@ demo.writeDemoData = function(textString) {
       data: textString
    });
 }
+
+
+/*
+ * Player One: Press Start
+ */
+window.onload = function() {
+   demo.initApp();
+};
