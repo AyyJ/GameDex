@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>GameDex</title>
+      <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="css/global.css">
+   </head>
+   <body>
+      <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+      <script src="js/base.js"></script>
+      <script src="js/abr.js"></script>
+      <script type="text/javascript">
+   		window.onload = function() {
+			var url = document.location.href;
+			var params = url.split('?')[1].split('&');
+			var data = {};
+			var tmp;
+			for (var i = 0, l = params.length; i < l; i++) {
+				 tmp = params[i].split('=');
+				 document.getElementById(tmp[0]).value = decodeURIComponent(tmp[1]);
+			}
+			
+   			abr.initEditGamePage();
+   		};
+
+   	</script>
+
+      <header>
+      <h1>GameDex</h1>
+      <h2>Modify a Game</h2>
+
+      <nav>
+         <a href="viewlist.html">Your Games</a>
+         <a href="../friends/viewlist.html">Friends</a>
+         <a href="../friends/viewgames.html">Friends' Games</a>
+         <a href="index.html" id="signout">Logout</a>
+      </nav>
+      </header>
+
+      <form>
+      <table>
+         <tr>
+         <td>
+            <label for="title">Title</label>
+         </td>
+         <td>
+            <input type="text" id="game_title" name="title">
+         </td>
+         </tr>
+
+         <tr>
+         <td>
+            <label for="desc">Description</label>
+         </td>
+         <td>
+            <input type="text" id="game_desc" name="desc">
+         </td>
+         </tr>
+
+         <tr>
+         <td>
+            <label for="reldate">Release Date</label>
+         </td>
+         <td>
+            <input type="text" id="game_reldate" name="reldate">
+         </td>
+         </tr>
+
+         <tr>
+         <td>
+            <label for="price">Purchase Price</label>
+         </td>
+         <td>
+            <input type="text" id="game_price" name="price">
+         </td>
+         </tr>
+
+         <tr>
+         <td>
+            <label for="gamesystem">Platform</label>
+         </td>
+         <td>
+            <select name="gamesystem" required>
+	            <option value="">Select Game System</option>
+	         	   <optgroup label="Consoles">
+			 		      <option value="1.1"> XBOX</option>
+			 		      <option value="1.2">PlayStation</option>
+			 		      <option value="1.3">Nintendo Switch</option>
+                  </optgroup>
+			 	      <optgroup label="Table-top">
+	                  <option value="2.1">Cards</option>
+                  </optgroup>
+            </select>
+         </td>
+         </tr>
+
+         <tr>
+            <td>
+
+            <label for="genre">Genre</label>
+            </td>
+            <td>
+               <input type="text" id="game_genre" name="genre">
+            </td>
+         </tr>
+
+         <tr>
+            <td>
+
+            <label for="completed">Completed Playthrough</label>
+            </td>
+            <td>
+               <input type="checkbox" name="completed">
+            </td>
+         </tr>
+
+         <tr>
+            <td>
+
+            <label for="isFuntional">Still Functional</label>
+            </td>
+            <td>
+               <input type="checkbox" name="isFunctional">
+            </td>
+         </tr>
+
+         <tr>
+         <td>
+            <label for="pathToFile">Cover Art</label>
+         </td>
+         <td>
+            <input name="pathToFile" type="file" class="smallfont">
+         </td>
+         </tr>
+
+         <tr>
+            <td>
+
+            <label for="notes">Notes</label>
+            </td>
+            <td>
+               <textarea name="notes"></textarea>
+            </td>
+         </tr>
+
+         <tr>
+            <td colspan="2" class="centered">
+               <button id="submit" name="submit" type="button">Submit</button>
+               <button id="cancel" name="submit" type="button">Cancel</button>
+            </td>
+         </tr>
+      </table>
+      </form>
+
+   </body>
+</html>
