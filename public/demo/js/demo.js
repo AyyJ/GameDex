@@ -132,12 +132,18 @@ demo.loadTextData = function() {
          var comCell = row.insertCell(1);
 
          var commandString = '<span id="action_'+key+'">';
-         commandString += '<button type="button" onclick="demo.handleEditTextData(\''+key+'\')">Edit</button>';
+         commandString += '<button type="button" onclick="demo.handleEditTextData(\''+key+'\',\''+childData+'\')">Edit</button>';
          commandString += '<button type="button" onclick="demo.deleteTextData(\''+key+'\')">Delete</button>';
          commandString += '</span>';
-
-         valCell.innerHTML = '<input id="'+key+'" type="text" value="'+childData+'" disabled>';
-         comCell.innerHTML = commandString;
+		
+		if(childData.indexOf("images") == -1 && childData.indexOf("http") == -1 && childData.indexOf(".jpg") == -1
+			&& childData.indexOf(".png") == -1 && childData.indexOf(".jpeg") == -1)
+		  {
+			 valCell.innerHTML = '<input id="'+key+'" type="text" value="'+childData+'" disabled>';
+		  } else {
+			 valCell.innerHTML = '<div id="'+key+'"><img src="'+childData+'"></div>';
+		  }
+		  comCell.innerHTML = commandString;
 
       });
    });
@@ -147,8 +153,14 @@ demo.loadTextData = function() {
 /*
  * Function: Handles the demo text data edit button.
  */
-demo.handleEditTextData = function(record) {
-   document.getElementById(record).disabled = false;
+demo.handleEditTextData = function(record, childData) {alert(childData);
+	if(childData.indexOf("images") == -1 && childData.indexOf("http") == -1 && childData.indexOf(".jpg") == -1
+	&& childData.indexOf(".png") == -1 && childData.indexOf(".jpeg") == -1)
+	{
+		document.getElementById(record).disabled = false;
+	} else {
+		document.getElementById(record).innerHTML = '<input id="image_'+record+'" type="text" value="'+childData+'">';
+	}
 
    var commandString = '<span id="action_'+record+'">';
    commandString += '<button type="button" onclick="demo.editSubmitTextData(\''+record+'\')">Submit</button>';
@@ -162,8 +174,8 @@ demo.handleEditTextData = function(record) {
 /*
  * Function: Edit a firebase entry.
  */
-demo.editSubmitTextData = function(record) {
-   var newValue = document.getElementById(record).value;
+demo.editSubmitTextData = function(record) {alert(record);
+   var newValue = document.getElementById("image_"+record).value;alert(newValue);
    var demoRef = firebase.database().ref('demo/'+record);
    demoRef.set({data: newValue})
       .then(function() {
