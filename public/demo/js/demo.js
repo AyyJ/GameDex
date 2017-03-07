@@ -128,15 +128,15 @@ demo.loadTextData = function() {
          var childData = childSnapshot.child('data').val();
 
          var row = table.insertRow(-1);
-         var keyCell = row.insertCell(0);
-         var valCell = row.insertCell(1);
-         var comCell = row.insertCell(2);
+         var valCell = row.insertCell(0);
+         var comCell = row.insertCell(1);
 
-         var commandString = '<button type="button" onclick="demo.handleEditTextData(\''+key+'\')">Edit</button>';
+         var commandString = '<span id="action_'+key+'">';
+         commandString += '<button type="button" onclick="demo.handleEditTextData(\''+key+'\')">Edit</button>';
          commandString += '<button type="button" onclick="demo.deleteTextData(\''+key+'\')">Delete</button>';
+         commandString += '</span>';
 
-         keyCell.innerHTML = key;
-         valCell.innerHTML = childData;
+         valCell.innerHTML = '<input id="'+key+'" type="text" value="'+childData+'" disabled>';
          comCell.innerHTML = commandString;
 
       });
@@ -145,18 +145,30 @@ demo.loadTextData = function() {
 
 
 /*
- * Function: Handle the demo text data button click.
- *
+ * Function: Handles the demo text data edit button.
+ */
 demo.handleEditTextData = function(record) {
+   document.getElementById(record).disabled = false;
 
+   var commandString = '<span id="action_'+record+'">';
+   commandString += '<button type="button" onclick="demo.editSubmitTextData(\''+record+'\')">Submit</button>';
+   commandString += '<button type="button" onclick="demo.loadMainPage()">Cancel</button>';
+   commandString += '</span>';
+
+   document.getElementById('action_'+record).innerHTML = commandString;
 }
 
 
 /*
- * Function: Edit a demo text data entry.
- *
-demo.editTextData = function(record) {
-
+ * Function: Edit a firebase entry.
+ */
+demo.editSubmitTextData = function(record) {
+   var newValue = document.getElementById(record).value;
+   var demoRef = firebase.database().ref('demo/'+record);
+   demoRef.set({data: newValue})
+      .then(function() {
+         demo.loadMainPage();
+      });
 }
 
 
