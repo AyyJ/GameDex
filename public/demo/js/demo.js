@@ -17,6 +17,7 @@ var db = firebase.database()
  */
 var demo = {};
 
+var ajaxSemaphore = 0;
 
 /*
  * Function: Creates a cross-browser compatible XHR object.
@@ -45,6 +46,7 @@ demo.sendRequest = function(target) {
          demo.handleResponse(xhr);
       };
       xhr.send(null);
+      ajaxSemaphore += 1;
    }
 }
 
@@ -58,6 +60,7 @@ demo.handleResponse = function(xhr) {
       var responsePayload = xhr.response;
       var responseOutput = document.getElementById('spa-content');
       responseOutput.innerHTML = responsePayload;
+      ajaxSemaphore -= 1;
    }
 }
 
@@ -69,7 +72,7 @@ demo.initApp = function() {
    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
          demo.loadDisplayName(user);
-         demo.sendRequest('html/main.html');
+         demo.loadMainPage();
       }
    });
    document.getElementById('googleLogin').addEventListener('click', demo.handleGoogleLogin, false);
@@ -96,6 +99,47 @@ demo.loadDisplayName = function(user) {
          });
       }
    }
+}
+
+
+/*
+ * Function: Loads the main spa-content (aka Main page).
+ */
+demo.loadMainPage = function() {
+   demo.sendRequest('html/main.html');
+
+   if (ajaxSemaphore === 0) {
+      demo.loadTextData();
+   } else {
+      window.setTimeout(demo.loadTextData, 100);
+   }
+}
+
+/*
+ * Function: Loads the demo text data on the main page.
+ */
+demo.loadTextData = function() {
+   var table = document.getElementById('text_data_table');
+
+   var query = firebase.database().ref('demo').orderByKey();
+   query.once('value').then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+         var key = childSnapshot.key;
+         var childData = childSnapshot.child('data').val();
+
+         var row = table.insertRow(-1);
+         var keyCell = row.insertCell(0);
+         var valCell = row.insertCell(1);
+         var comCell = row.insertCell(2);
+
+         var commandString = '<button>Edit</button> <button>Delete</button>';
+
+         keyCell.innerHTML = key;
+         valCell.innerHTML = childData;
+         comCell.innerHTML = commandString;
+
+      });
+   });
 }
 
 
@@ -176,7 +220,6 @@ demo.handleRegistration = function() {
    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
          demo.createCustomUser();
-         demo.sendRequest('html/main.html');
       }
    });
 }
@@ -221,6 +264,7 @@ demo.createCustomUser = function() {
 demo.handleAddTextButton = function() {
    var textString = document.getElementById('text_input').value;
    demo.writeDemoData(textString);
+   demo.loadTextData();
 }
 
 
