@@ -9,7 +9,7 @@ var config = {
    messagingSenderId: "1057082821990"
 };
 var app = firebase.initializeApp(config);
-var db = firebase.database()
+var db = firebase.database();
 
 
 /*
@@ -31,7 +31,7 @@ demo.createXHR = function() {
    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
    alert('XMLHttpRequest not supported');
    return null;
-}
+};
 
 
 /*
@@ -48,7 +48,7 @@ demo.sendRequest = function(target) {
       xhr.send(null);
       ajaxSemaphore += 1;
    }
-}
+};
 
 
 /*
@@ -62,7 +62,7 @@ demo.handleResponse = function(xhr) {
       responseOutput.innerHTML = responsePayload;
       ajaxSemaphore -= 1;
    }
-}
+};
 
 
 /*
@@ -76,7 +76,7 @@ demo.initApp = function() {
       }
    });
    document.getElementById('googleLogin').addEventListener('click', demo.handleGoogleLogin, false);
-}
+};
 
 
 /*
@@ -87,8 +87,8 @@ demo.loadDisplayName = function(user) {
       var spaUserString = 'Guest';
       var logoutString = ' <button type="button" onclick="demo.logout()">Logout</button>';
       if (user.displayName) {
-         spaUserString = user.displayName + logoutString;;
-         document.getElementById('spa-user').innerHTML = spaUserString;
+          spaUserString = user.displayName + logoutString;
+          document.getElementById('spa-user').innerHTML = spaUserString;
       } else {
          var userFirebasePath = 'users/' + firebase.auth().currentUser.uid;
          var userRef = firebase.database().ref(userFirebasePath);
@@ -99,7 +99,7 @@ demo.loadDisplayName = function(user) {
          });
       }
    }
-}
+};
 
 
 /*
@@ -113,7 +113,7 @@ demo.loadMainPage = function() {
    } else {
       window.setTimeout(demo.loadTextData, 50);
    }
-}
+};
 
 /*
  * Function: Loads the demo text data on the main page.
@@ -147,7 +147,7 @@ demo.loadTextData = function() {
 
       });
    });
-}
+};
 
 
 /*
@@ -168,7 +168,7 @@ demo.handleEditTextData = function(record, childData) {
    commandString += '</span>';
 
    document.getElementById('action_'+record).innerHTML = commandString;
-}
+};
 
 
 /*
@@ -185,7 +185,7 @@ demo.editSubmitTextData = function(record) {
       .then(function() {
          demo.loadMainPage();
       });
-}
+};
 
 
 /*
@@ -197,7 +197,7 @@ demo.deleteTextData = function(record) {
       then(function() {
          demo.loadMainPage();
       });
-}
+};
 
 
 /*
@@ -217,7 +217,7 @@ demo.handleLogin = function() {
       }
       console.log(error);
    });
-}
+};
 
 
 /*
@@ -247,7 +247,7 @@ demo.handleGoogleLogin = function() {
          }
       });
    }
-}
+};
 
 
 /*
@@ -258,7 +258,7 @@ demo.logout = function() {
       firebase.auth().signOut();
       window.location.replace('index.html');
    }
-}
+};
 
 
 /*
@@ -266,7 +266,7 @@ demo.logout = function() {
  */
 demo.handleLoginRegisterButton = function() {
    demo.sendRequest('html/register.html');
-}
+};
 
 
 /*
@@ -279,7 +279,7 @@ demo.handleRegistration = function() {
          demo.createCustomUser();
       }
    });
-}
+};
 
 
 /*
@@ -299,7 +299,7 @@ demo.createFirebaseUser = function() {
       }
       console.log(error);
    });
-}
+};
 
 
 /*
@@ -312,7 +312,7 @@ demo.createCustomUser = function() {
    userRef.set({
       'display_name' : displayName
    });
-}
+};
 
 
 /*
@@ -322,7 +322,7 @@ demo.handleAddTextButton = function() {
    var textString = document.getElementById('text_input').value;
    demo.writeDemoData(textString);
    demo.loadMainPage();
-}
+};
 
 
 /*
@@ -334,7 +334,7 @@ demo.writeDemoData = function(textString) {
    newDemoTextRef.set({
       data: textString
    });
-}
+};
 
 
 /*
