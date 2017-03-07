@@ -111,7 +111,7 @@ demo.loadMainPage = function() {
    if (ajaxSemaphore === 0) {
       demo.loadTextData();
    } else {
-      window.setTimeout(demo.loadTextData, 100);
+      window.setTimeout(demo.loadTextData, 50);
    }
 }
 
@@ -132,7 +132,8 @@ demo.loadTextData = function() {
          var valCell = row.insertCell(1);
          var comCell = row.insertCell(2);
 
-         var commandString = '<button>Edit</button> <button>Delete</button>';
+         var commandString = '<button type="button" onclick="demo.handleEditTextData(\''+key+'\')">Edit</button>';
+         commandString += '<button type="button" onclick="demo.deleteTextData(\''+key+'\')">Delete</button>';
 
          keyCell.innerHTML = key;
          valCell.innerHTML = childData;
@@ -140,6 +141,34 @@ demo.loadTextData = function() {
 
       });
    });
+}
+
+
+/*
+ * Function: Handle the demo text data button click.
+ *
+demo.handleEditTextData = function(record) {
+
+}
+
+
+/*
+ * Function: Edit a demo text data entry.
+ *
+demo.editTextData = function(record) {
+
+}
+
+
+/*
+ * Function: Delete a demo text data entry.
+ */
+demo.deleteTextData = function(record) {
+   var demoRef = firebase.database().ref('demo');
+   demoRef.child(record).remove().
+      then(function() {
+         demo.loadMainPage();
+      });
 }
 
 
@@ -264,7 +293,7 @@ demo.createCustomUser = function() {
 demo.handleAddTextButton = function() {
    var textString = document.getElementById('text_input').value;
    demo.writeDemoData(textString);
-   demo.loadTextData();
+   demo.loadMainPage();
 }
 
 
