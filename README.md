@@ -10,16 +10,16 @@ Homework 1
 * [HW1 can be found in the root directory (where this README is!)](#)
 
 Homework 2
-* [Wireframes](tree/master/public/wireframes)
-* [Tag page](tree/master/public/tags)
-* [Team page](tree/master/public/team.html)
+* [Wireframes](public/wireframes)
+* [Tag page](public/tags)
+* [Team page](public/team.html)
 
 Homework 3
-* [Vanilla CSS](tree/master/public/vanilla)
-* [Framework CSS](tree/master/public/bootstrap)
+* [Vanilla CSS](public/vanilla)
+* [Framework CSS](public/bootstrap)
 
 Homework 4
-* [CRUD Demo](tree/master/public/demo)
+* [CRUD Demo](public/demo)
 
 Homework 5
 * GameDex
