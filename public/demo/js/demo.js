@@ -153,7 +153,7 @@ demo.loadTextData = function() {
 /*
  * Function: Handles the demo text data edit button.
  */
-demo.handleEditTextData = function(record, childData) {alert(childData);
+demo.handleEditTextData = function(record, childData) {
 	if(childData.indexOf("images") == -1 && childData.indexOf("http") == -1 && childData.indexOf(".jpg") == -1
 	&& childData.indexOf(".png") == -1 && childData.indexOf(".jpeg") == -1)
 	{
@@ -174,8 +174,12 @@ demo.handleEditTextData = function(record, childData) {alert(childData);
 /*
  * Function: Edit a firebase entry.
  */
-demo.editSubmitTextData = function(record) {alert(record);
-   var newValue = document.getElementById("image_"+record).value;alert(newValue);
+demo.editSubmitTextData = function(record) {
+   var newValue;
+   if(document.getElementById("image_"+record) == null)
+		newValue = document.getElementById(record).value;
+   else	   
+		newValue = document.getElementById("image_"+record).value;
    var demoRef = firebase.database().ref('demo/'+record);
    demoRef.set({data: newValue})
       .then(function() {
