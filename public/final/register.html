@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>GameDex</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="css/final.css" type="text/css">
+</head>
+<body>
+   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+   <script src="js/final.js"></script>
+   <script type="text/javascript">
+      window.onload = function() {
+         foo.initRegistrationPage();
+      };
+   </script>
+   <h1>GameDex</h1>
+   <p>Create an account</p>
+   <label>Email <input id="register_email" type="email"></label>
+   <br>
+   <label>Password <input id="register_password" type="password"></label>
+   <br>
+   <label>Display name <input id="register_displayName" type="text"></label>
+   <br>
+   <button id="register_submit" type="button">Register</button>
+   <button id="register_cancel" type="button">Cancel</button>
+</body>
