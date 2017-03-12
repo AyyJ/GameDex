@@ -210,7 +210,32 @@ foo.handleAddGameButton = function() {
  * Function: Initializes Edit a Game page.
  */
 foo.initEditPage = function() {
+   document.getElementById('game_submit').addEventListener('click', foo.handleGameSubmitButton, false);
    document.getElementById('game_cancel').addEventListener('click', foo.handleGameCancelButton, false);
+}
+
+
+/*
+ * Function: Process the Add/Edit a game submission button.
+ */
+foo.handleGameSubmitButton = function() {
+   var txtGameTitle = document.getElementById('game_title').value;
+   var txtGameDesc = document.getElementById('game_desc').value;
+   foo.writeGameData(txtGameTitle, txtGameDesc);
+   window.location.replace('main.html');
+}
+
+/*
+ * Function: Writes the game data to firebase.
+ */
+foo.writeGameData = function(txtGameTitle, txtGameDesc) {
+   var userGameLibraryPath = 'users/' + firebase.auth().currentUser.uid + '/games';
+   var userGameLibraryRef = firebase.database().ref(userGameLibraryPath);
+   var newGameEntryRef = userGameLibraryRef.push();
+   newGameEntryRef.set({
+      title: txtGameTitle,
+      desc: txtGameDesc
+   });
 }
 
 
