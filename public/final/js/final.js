@@ -162,6 +162,7 @@ foo.initMainPage = function() {
       if (user) {
          foo.loadDisplayName(user);
          document.getElementById('logout').addEventListener('click', foo.handleLogout, false);
+         document.getElementById('add_game').addEventListener('click', foo.handleAddGameButton, false);
          // Load games list.
       }
    });
@@ -195,3 +196,27 @@ foo.handleLogout = function() {
       window.location.replace('index.html');
    }
 };
+
+
+/*
+ * Function: Opens the Add a new Game page.
+ */
+foo.handleAddGameButton = function() {
+   window.location.replace('edit.html');
+}
+
+
+/*
+ * Function: Initializes Edit a Game page.
+ */
+foo.initEditPage = function() {
+   document.getElementById('game_cancel').addEventListener('click', foo.handleGameCancelButton, false);
+}
+
+
+/*
+ * Function: Cancels new game/edit a game interface.
+ */
+foo.handleGameCancelButton = function() {
+   window.location.replace('main.html');
+}
