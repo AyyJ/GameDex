@@ -164,6 +164,7 @@ foo.initMainPage = function() {
          document.getElementById('logout').addEventListener('click', foo.handleLogout, false);
          document.getElementById('add_game').addEventListener('click', foo.handleAddGameButton, false);
          // Load games list.
+         foo.startFirebaseQuery();
       }
    });
 }
@@ -229,7 +230,8 @@ foo.handleGameSubmitButton = function() {
  * Function: Writes the game data to firebase.
  */
 foo.writeGameData = function(txtGameTitle, txtGameDesc) {
-   var userGameLibraryPath = 'users/' + firebase.auth().currentUser.uid + '/games';
+   var currentUserId = firebase.auth().currentUser.uid;
+   var userGameLibraryPath = 'users/' + currentUserId + '/games';
    var userGameLibraryRef = firebase.database().ref(userGameLibraryPath);
    var newGameEntryRef = userGameLibraryRef.push();
    newGameEntryRef.set({
@@ -244,4 +246,61 @@ foo.writeGameData = function(txtGameTitle, txtGameDesc) {
  */
 foo.handleGameCancelButton = function() {
    window.location.replace('main.html');
+}
+
+
+/*
+ * Function: Starts listening for new games and populates the game list.
+ */
+foo.startFirebaseQuery = function() {
+   alert('Entering: startFirebaseQuery.');
+   var currentUserId = firebase.auth().currentUser.uid;
+   var userGameLibraryPath = 'users/' + currentUserId + '/games';
+   var userGameLibraryRef = firebase.database().ref(userGameLibraryPath);
+
+   var libraryElement = document.getElementById('game_library');
+   foo.fetchUserGameLibrary(userGameLibraryRef, libraryElement);
+   alert('Exiting: startFirebaseQuery.');
+}
+
+
+foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
+   libraryRef.on('child_added', function(data) {
+      var key = data.key;
+      var title = data.val().title;
+      var desc = data.val().desc;
+      var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
+
+      gameElement.insertBefore(
+         foo.createGameEntry(key, title, desc),
+         gameElement.firstChild
+      );
+      alert('child should have been added!');
+   });
+   libraryRef.on('child_changed', function(data) {
+      alert('child was changed!');
+   });
+   libraryRef.on('child_removed', function(data) {
+      alert('child was removed!');
+   });
+}
+
+
+foo.createGameEntry = function(key, title, desc) {
+   var html =
+      '<div id="game_' + key + '" class="game_entries">' +
+         '<span class="game_title"></span>' +
+         '<span class="game_desc"></span>' +
+      '</div>';
+
+   // Create the DOM element from the HTML.
+   var div = document.createElement('div');
+   div.innerHTML = html;
+   var gameElement = div.firstChild;
+
+   // Set values.
+   gameElement.getElementsByClassName('game_title')[0].innerText = title;
+   gameElement.getElementsByClassName('game_desc')[0].innerText = desc;
+
+   return gameElement;
 }
