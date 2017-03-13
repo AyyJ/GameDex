@@ -230,10 +230,9 @@ foo.handleGameSubmitButton = function() {
  * Function: Writes the game data to firebase.
  */
 foo.writeGameData = function(txtGameTitle, txtGameDesc) {
-   var currentUserId = firebase.auth().currentUser.uid;
-   var userGameLibraryPath = 'users/' + currentUserId + '/games';
-   var userGameLibraryRef = firebase.database().ref(userGameLibraryPath);
-   var newGameEntryRef = userGameLibraryRef.push();
+   var libraryRef = foo.getUserGameLibraryRef();
+   var newGameEntryRef = ref.push();
+
    newGameEntryRef.set({
       title: txtGameTitle,
       desc: txtGameDesc
@@ -250,21 +249,21 @@ foo.handleGameCancelButton = function() {
 
 
 /*
- * Function: Starts listening for new games and populates the game list.
+ * Function: Prepares to fetch the user's game library.
  */
 foo.startFirebaseQuery = function() {
-   alert('Entering: startFirebaseQuery.');
-   var currentUserId = firebase.auth().currentUser.uid;
-   var userGameLibraryPath = 'users/' + currentUserId + '/games';
-   var userGameLibraryRef = firebase.database().ref(userGameLibraryPath);
-
+   var libraryRef = foo.getUserGameLibraryRef();
    var libraryElement = document.getElementById('game_library');
-   foo.fetchUserGameLibrary(userGameLibraryRef, libraryElement);
-   alert('Exiting: startFirebaseQuery.');
+
+   foo.fetchUserGameLibrary(libraryRef, libraryElement);
 }
 
 
+/*
+ * Function: Starts listening for new games and populates the game list.
+ */
 foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
+
    libraryRef.on('child_added', function(data) {
       var key = data.key;
       var title = data.val().title;
@@ -275,22 +274,30 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
          foo.createGameEntry(key, title, desc),
          gameElement.firstChild
       );
-      alert('child should have been added!');
    });
+
    libraryRef.on('child_changed', function(data) {
       alert('child was changed!');
    });
+
    libraryRef.on('child_removed', function(data) {
-      alert('child was removed!');
+      var key = data.key;
+      var gameElement = document.getElementById('game_' + key);
+      gameElement.parentElement.removeChild(gameElement);
    });
 }
 
 
+/*
+ * Function: Builds the game entry HTML for the user's game library.
+ */
 foo.createGameEntry = function(key, title, desc) {
+   // HTML to build the game entry.
    var html =
       '<div id="game_' + key + '" class="game_entries">' +
          '<span class="game_title"></span>' +
          '<span class="game_desc"></span>' +
+         '<button type="button" onclick="foo.removeGameData(\''+ key +'\')">Remove</button>' +
       '</div>';
 
    // Create the DOM element from the HTML.
@@ -303,4 +310,25 @@ foo.createGameEntry = function(key, title, desc) {
    gameElement.getElementsByClassName('game_desc')[0].innerText = desc;
 
    return gameElement;
+}
+
+
+/*
+ * Function: Remove a game from the user's library.
+ */
+foo.removeGameData = function(key) {
+   var libraryRef = foo.getUserGameLibraryRef();
+
+   libraryRef.child(key).remove();
+}
+
+
+/*
+ * Function: Gets a Firebase reference to the user's game library.
+ */
+foo.getUserGameLibraryRef = function() {
+   var currentUserId = firebase.auth().currentUser.uid;
+   var userGameLibraryPath = 'users/' + currentUserId + '/games';
+   var userGameLibraryRef = firebase.database().ref(userGameLibraryPath);
+   return userGameLibraryRef;
 }
