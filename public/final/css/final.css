@@ -5,30 +5,21 @@ body {
     border: 0px solid gray;
 	background-color: #A1BCE5;
 }
-
 #homecenter {
-  position: absolute; 
-  left: 35%; 
-  top:170px; 
-  width: 450px; 
-  height: 300px; 
-  background-color: #4973B0; 
+  position: absolute;
+  left: 35%;
+  top:170px;
+  width: 450px;
+  height: 300px;
+  background-color: #4973B0;
   border: 0px solid gray;
 }
-
 #homecenter1 {
-  position: absolute; 
-  left: 15%; 
-  top:0px; 
-  width: 300px; 
-  height: 30px; 
-}
-
-#section_form {
-   display: none;
-}
-#section_library {
-   display: inline;
+  position: absolute;
+  left: 15%;
+  top:0px;
+  width: 300px;
+  height: 30px;
 }
 .googleLogin{
   display: block;
