@@ -163,6 +163,7 @@ foo.initMainPage = function() {
          foo.loadDisplayName(user);
          document.getElementById('logout').addEventListener('click', foo.handleLogout, false);
          document.getElementById('add_game').addEventListener('click', foo.handleAddGameButton, false);
+         document.getElementById('game_cancel').addEventListener('click', foo.handleGameCancelButton, false);
          // Load games list.
          foo.startFirebaseQuery();
       }
@@ -203,35 +204,30 @@ foo.handleLogout = function() {
  * Function: Opens the Add a new Game page.
  */
 foo.handleAddGameButton = function() {
-   window.location.replace('edit.html');
-}
-
-
-/*
- * Function: Initializes Edit a Game page.
- */
-foo.initEditPage = function() {
-   document.getElementById('game_submit').addEventListener('click', foo.handleGameSubmitButton, false);
-   document.getElementById('game_cancel').addEventListener('click', foo.handleGameCancelButton, false);
+   //window.location.replace('edit.html');
+   foo.openForm();
+   document.getElementById('game_submit').addEventListener('click', foo.handleNewGameSubmit, false);
+   document.getElementById('form_type_label').innerText = 'Add a new game.';
 }
 
 
 /*
  * Function: Process the Add/Edit a game submission button.
  */
-foo.handleGameSubmitButton = function() {
+foo.handleNewGameSubmit = function() {
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
    foo.writeGameData(txtGameTitle, txtGameDesc);
-   window.location.replace('main.html');
+   foo.closeForm();
 }
+
 
 /*
  * Function: Writes the game data to firebase.
  */
 foo.writeGameData = function(txtGameTitle, txtGameDesc) {
    var libraryRef = foo.getUserGameLibraryRef();
-   var newGameEntryRef = ref.push();
+   var newGameEntryRef = libraryRef.push();
 
    newGameEntryRef.set({
       title: txtGameTitle,
@@ -239,12 +235,86 @@ foo.writeGameData = function(txtGameTitle, txtGameDesc) {
    });
 }
 
+/*
+ * Function: Handles the edit game button.
+ */
+foo.handleEditGameButton = function(key) {
+   foo.openForm();
+   document.getElementById('game_submit').addEventListener('click', foo.handleEditGameSubmit, false);
+   document.getElementById('form_type_label').innerText = 'Edit this game.';
+
+   var libraryRef = foo.getUserGameLibraryRef();
+   libraryRef.child(key).once('value')
+      .then(function(dataSnapshot) {
+         document.getElementById('game_key').value = key;
+         document.getElementById('game_title').value = dataSnapshot.child('title').val();
+         document.getElementById('game_desc').value = dataSnapshot.child('desc').val();
+      });
+}
+
+
+/*
+ * Function: Process the Add/Edit a game submission button.
+ */
+foo.handleEditGameSubmit = function() {
+   var key = document.getElementById('game_key').value;
+   var txtGameTitle = document.getElementById('game_title').value;
+   var txtGameDesc = document.getElementById('game_desc').value;
+   foo.editGameData(key,txtGameTitle, txtGameDesc);
+   foo.closeForm();
+}
+
+
+/*
+ * Function: Edits a game in the user's library.
+ */
+foo.editGameData = function(key,title,desc) {
+   var libraryRef = foo.getUserGameLibraryRef();
+   libraryRef.child(key).set({
+      'title': title,
+      'desc': desc
+   });
+}
+
+/*
+ * Function: Hides the library and displays the edit form.
+ */
+foo.openForm = function() {
+   var formSection = document.getElementById('section_form');
+   var librarySection = document.getElementById('section_library');
+
+   formSection.style.display = 'inline';
+   librarySection.style.display = 'none';
+}
+
+
+/*
+ * Function: Hides the form and displays the library.
+ */
+foo.closeForm = function() {
+   // Remove event listeners on the Submit button.
+   document.getElementById('game_submit').removeEventListener('click', foo.handleEditGameSubmit, false);
+   document.getElementById('game_submit').removeEventListener('click', foo.handleNewGameSubmit, false);
+
+   // Return all fields to default.
+   document.getElementById('game_key').value = '';
+   document.getElementById('game_title').value = '';
+   document.getElementById('game_desc').value = '';
+
+   // Switch between sections.
+   var formSection = document.getElementById('section_form');
+   var librarySection = document.getElementById('section_library');
+
+   formSection.style.display = 'none';
+   librarySection.style.display = 'inline';
+}
+
 
 /*
  * Function: Cancels new game/edit a game interface.
  */
 foo.handleGameCancelButton = function() {
-   window.location.replace('main.html');
+   foo.closeForm();
 }
 
 
@@ -277,7 +347,11 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
    });
 
    libraryRef.on('child_changed', function(data) {
-      alert('child was changed!');
+      var key = data.key;
+      //var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
+      var gameEntry = document.getElementById('game_'+key);
+      gameEntry.getElementsByClassName('game_title')[0].innerText = data.val().title;
+      gameEntry.getElementsByClassName('game_desc')[0].innerText = data.val().desc;
    });
 
    libraryRef.on('child_removed', function(data) {
@@ -297,7 +371,8 @@ foo.createGameEntry = function(key, title, desc) {
       '<div id="game_' + key + '" class="game_entries">' +
          '<span class="game_title"></span>' +
          '<span class="game_desc"></span>' +
-         '<button type="button" onclick="foo.removeGameData(\''+ key +'\')">Remove</button>' +
+         '<button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button>' +
+         '<button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button>' +
       '</div>';
 
    // Create the DOM element from the HTML.
@@ -314,11 +389,19 @@ foo.createGameEntry = function(key, title, desc) {
 
 
 /*
+ * Function: Handles the remove game button.
+ */
+foo.handleRemoveGameButton = function(key) {
+   if(confirm('Remove game?')){
+      foo.removeGameData(key);
+   }
+}
+
+/*
  * Function: Remove a game from the user's library.
  */
 foo.removeGameData = function(key) {
    var libraryRef = foo.getUserGameLibraryRef();
-
    libraryRef.child(key).remove();
 }
 
@@ -329,6 +412,5 @@ foo.removeGameData = function(key) {
 foo.getUserGameLibraryRef = function() {
    var currentUserId = firebase.auth().currentUser.uid;
    var userGameLibraryPath = 'users/' + currentUserId + '/games';
-   var userGameLibraryRef = firebase.database().ref(userGameLibraryPath);
-   return userGameLibraryRef;
+   return firebase.database().ref(userGameLibraryPath);
 }

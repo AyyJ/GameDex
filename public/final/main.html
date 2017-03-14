@@ -14,20 +14,40 @@
          foo.initMainPage();
       };
    </script>
-   <h1>GameDex</h1>
 
-   <div>
+   <header>
+      <h1>GameDex</h1>
       <span id="displayName"></span>
       <button id="logout" type="button">Logout</button>
-   </div>
+   </header>
 
-   <button id="add_game" type="button">Add</button>
-
-
-   <div id="game_library">
-      <div class="game_entries">
+   <section id="section_form">
+      <div id="edit_form">
+         <p><span id="form_type_label"></span></p>
+         <input id="game_key" type="hidden">
+         <label>Title<input id="game_title" type="text"></label>
+         <br>
+         <label>Description<input id="game_desc" type="text"></label>
+         <br>
+         <button id="game_submit" type="button">Submit</button>
+         <button id="game_cancel" type="button">Cancel</button>
       </div>
-   </div>
+   </section>
+
+   <section id="section_library">
+      <div>
+         <button id="add_game" type="button">Add</button>
+      </div>
+
+      <div id="game_library">
+         <div class="game_entries">
+         </div>
+      </div>
+   </section>
+
+   <footer>
+      <p>&copy; 2017</p>
+   </footer>
 
 </body>
 </html>

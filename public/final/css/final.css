@@ -1,3 +1,9 @@
+#section_form {
+   display: none;
+}
+#section_library {
+   display: inline;
+}
 .googleLogin{
   display: block;
   overflow: hidden;
