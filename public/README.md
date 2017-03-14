@@ -22,7 +22,7 @@ Homework 4
 * [CRUD Demo](demo)
 
 Homework 5
-* GameDex
+* [GameDex](final)
 
 ## Homework 2 README
 Arthur de Jesus, Brian Maier, and Rabab Singh

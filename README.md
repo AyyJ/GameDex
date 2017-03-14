@@ -22,4 +22,4 @@ Homework 4
 * [CRUD Demo](public/demo)
 
 Homework 5
-* GameDex
+* [GameDex](public/final)
