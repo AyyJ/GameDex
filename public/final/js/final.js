@@ -217,7 +217,12 @@ foo.handleAddGameButton = function() {
 foo.handleNewGameSubmit = function() {
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
-   foo.writeGameData(txtGameTitle, txtGameDesc);
+   var txtGameReldate = document.getElementById('game_reldate').value;
+   var txtGamePrice = document.getElementById('game_price').value;
+   var dropGameSystem = document.getElementById("game_system");
+   var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
+   var txtGameGenre = document.getElementById('game_genre').value;
+   foo.writeGameData(txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
    foo.closeForm();
 }
 
@@ -225,13 +230,17 @@ foo.handleNewGameSubmit = function() {
 /*
  * Function: Writes the game data to firebase.
  */
-foo.writeGameData = function(txtGameTitle, txtGameDesc) {
+foo.writeGameData = function(txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre) {
    var libraryRef = foo.getUserGameLibraryRef();
    var newGameEntryRef = libraryRef.push();
 
    newGameEntryRef.set({
       title: txtGameTitle,
-      desc: txtGameDesc
+      desc: txtGameDesc,
+      reldate: txtGameReldate,
+      price: txtGamePrice,
+      system: txtGameSystem,
+      genre: txtGameGenre
    });
 }
 
@@ -249,6 +258,11 @@ foo.handleEditGameButton = function(key) {
          document.getElementById('game_key').value = key;
          document.getElementById('game_title').value = dataSnapshot.child('title').val();
          document.getElementById('game_desc').value = dataSnapshot.child('desc').val();
+         document.getElementById('game_reldate').value = dataSnapshot.child('reldate').val();
+         document.getElementById('game_price').value = dataSnapshot.child('price').val();
+         var dropGameSystem = document.getElementById("game_system");
+         dropGameSystem.options[dropGameSystem.selectedIndex].text = dataSnapshot.child('system').val();
+         document.getElementById('game_genre').value = dataSnapshot.child('genre').val();
       });
 }
 
@@ -260,7 +274,12 @@ foo.handleEditGameSubmit = function() {
    var key = document.getElementById('game_key').value;
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
-   foo.editGameData(key,txtGameTitle, txtGameDesc);
+   var txtGameReldate = document.getElementById('game_reldate').value;
+   var txtGamePrice = document.getElementById('game_price').value;
+   var dropGameSystem = document.getElementById("game_system");
+   var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
+   var txtGameGenre = document.getElementById('game_genre').value;
+   foo.editGameData(key,txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
    foo.closeForm();
 }
 
@@ -268,11 +287,15 @@ foo.handleEditGameSubmit = function() {
 /*
  * Function: Edits a game in the user's library.
  */
-foo.editGameData = function(key,title,desc) {
+foo.editGameData = function(key, title, desc, reldate, price, system, genre) {
    var libraryRef = foo.getUserGameLibraryRef();
    libraryRef.child(key).set({
       'title': title,
-      'desc': desc
+      'desc': desc,
+      'reldate': reldate,
+      'price': price,
+      'system': system,
+      'genre': genre
    });
 }
 
@@ -300,6 +323,12 @@ foo.closeForm = function() {
    document.getElementById('game_key').value = '';
    document.getElementById('game_title').value = '';
    document.getElementById('game_desc').value = '';
+   document.getElementById('game_desc').value = '';
+   document.getElementById('game_reldate').value = '';
+   document.getElementById('game_price').value = '';
+   var dropGameSystem = document.getElementById("game_system");
+   dropGameSystem.options[dropGameSystem.selectedIndex].value = 0;
+   document.getElementById('game_genre').value = '';
 
    // Switch between sections.
    var formSection = document.getElementById('section_form');
@@ -338,10 +367,15 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
       var key = data.key;
       var title = data.val().title;
       var desc = data.val().desc;
-      var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
+      var reldate = data.val().reldate;
+      var price = data.val().price;
+      var system = data.val().system;
+      var genre = data.val().genre;
+
+       var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
 
       gameElement.insertBefore(
-         foo.createGameEntry(key, title, desc),
+         foo.createGameEntry(key, title, desc, reldate, price, system, genre),
          gameElement.firstChild
       );
    });
@@ -352,6 +386,11 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
       var gameEntry = document.getElementById('game_'+key);
       gameEntry.getElementsByClassName('game_title')[0].innerText = data.val().title;
       gameEntry.getElementsByClassName('game_desc')[0].innerText = data.val().desc;
+      gameEntry.getElementsByClassName('game_reldate')[0].innerText = data.val().reldate;
+      gameEntry.getElementsByClassName('game_price')[0].innerText = data.val().price;
+      gameEntry.getElementsByClassName('game_system')[0].innerText = data.val().system;
+      gameEntry.getElementsByClassName('game_genre')[0].innerText = data.val().genre;
+
    });
 
    libraryRef.on('child_removed', function(data) {
@@ -365,13 +404,17 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 /*
  * Function: Builds the game entry HTML for the user's game library.
  */
-foo.createGameEntry = function(key, title, desc) {
+foo.createGameEntry = function(key, title, desc, reldate, price, system, genre) {
    // HTML to build the game entry.
    var html =
       '<div id="game_' + key + '" class="game_entries">' +
          '<span class="game_title"></span>' +
          '<span class="game_desc"></span>' +
-         '<button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button>' +
+         '<span class="game_reldate"></span>' +
+         '<span class="game_price"></span>' +
+         '<span class="game_system"></span>' +
+         '<span class="game_genre"></span>' +
+      '<button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button>' +
          '<button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button>' +
       '</div>';
 
@@ -383,8 +426,13 @@ foo.createGameEntry = function(key, title, desc) {
    // Set values.
    gameElement.getElementsByClassName('game_title')[0].innerText = title;
    gameElement.getElementsByClassName('game_desc')[0].innerText = desc;
+   gameElement.getElementsByClassName('game_reldate')[0].innerText = reldate;
+   gameElement.getElementsByClassName('game_price')[0].innerText = price;
+   gameElement.getElementsByClassName('game_system')[0].innerText = system;
+   gameElement.getElementsByClassName('game_genre')[0].innerText = genre;
 
-   return gameElement;
+
+    return gameElement;
 }
 
 
