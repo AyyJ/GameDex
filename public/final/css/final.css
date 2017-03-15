@@ -21,6 +21,22 @@ body {
   width: 300px;
   height: 30px;
 }
+#homecenter2 {
+  position: absolute;
+  left: 35%;
+  top:100px;
+  width: 550px;
+  height: 500px;
+  background-color: #4973B0;
+  border: 0px solid gray;
+}
+#homecenter3 {
+  position: absolute;
+  left: 15%;
+  top:0px;
+  width: 300px;
+  height: 100px;
+}
 .googleLogin{
   display: block;
   overflow: hidden;
