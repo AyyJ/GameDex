@@ -1,5 +1,5 @@
 ## GameDex for Web
-GameDex is a web-based application that allows our users to create and manage their inventory of games. We like to think of it as “your game shelf for the modern day.” With GameDex, you can have a list of all your games in one place and even see what games your friends have! 
+GameDex is a web-based application that allows our users to create and manage their inventory of games. We like to think of it as “your game shelf for the modern day.” With GameDex, you can have a list of all your games in one place, no matter what kind of game it is!
 [https://gamedex-2d485.firebaseapp.com/](https://gamedex-2d485.firebaseapp.com/)
 
 ## Implementation Details
@@ -14,7 +14,7 @@ GameDex was developed as part of UC San Diego’s Winter 2017 CSE 134B course. T
 
 With our wireframes in mind, we took to actually writing code! We started with only writing the structural elements (no styling) and that can [be found here](public/wireframes). In homework 2 we also [implemented all the tags](public/tags) found in the HTML5 spec. Finally, we created [a fun team page](public/team.html) to show our development team.
 
-It was an incredibly difficult task for us to try and move away from how a page looks and design only the structural frame of our app, so we were quite pleased when we were able to style our pages for homework 3. Homework 3 allowed us to use [vanilla CSS](public/vanilla) to style our pages as well as a [framework for CSS (Bootsrap)](public/bootstrap). 
+It was an incredibly difficult task for us to try and move away from how a page looks and design only the structural frame of our app, so we were quite pleased when we were able to style our pages for homework 3. Homework 3 allowed us to use [vanilla CSS](public/vanilla) to style our pages as well as a [framework for CSS (Bootsrap)](public/bootstrap).
 
 The last piece of the puzzle was to make calls to the database and perform the crucial CRUD (Create, Read, Update and Delete) operations. For homework 4 we simply implemented [a demo page](public/demo) that hit the requirements of the homework. We originally tried to incorporate Firebase into our wireframes, but quickly ran into a lot of issues with the steep learning curve required to fully implement the app. We took our lessons learned to come up with [our final app](public/final).
 
@@ -34,22 +34,25 @@ For the final submission, our file structure is as follows:
 ```
 final
 │   index.html
-│   main.html  
+│   main.html
 │   register.html
-│   README.md          
+│   README.md
 │
 └───css
 │   │   final.css
 │   │   final.min.css
-│   
+│
 └───images
 │   │   google_focus.png
 │   │   google_normal.png
 │   │   google_pressed.png
-│   
+│
 └───js
     │   final.js
     │   final.min.js
 ```
 
 As requested in the homework write up, we’ve left the un-minified version of both CSS and JS files in the project repo. We’ve split up each type of file into its individual folder (ex: css, js, images) to allow for easier code navigation. The reasoning behind using the Google images for sign-in was to follow the design guidelines set for using the Google single-sign on.
+
+## Modifications to Original Idea
+To allow for sufficient time in completing the core requirements, we moved to remove the social aspect of our GameDex app. This means we no longer have the "friend" capability to view friends, view friends games, and the analytics portion. We recognize that this was a little over ambitious once we got to understand the difficulty with Firebase and JavaScript. Without the social components, we still feel GameDex makes sense as a "digital bookshelf" for your games instead of having to look around countless places to know if you have a game or not. You could even choose to show someone your mobile device, tablet, or desktop screen as a way of sharing and comparing with friends.
