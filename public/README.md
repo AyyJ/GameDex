@@ -1,5 +1,6 @@
-# Welcome to the GameDex Repo!
+# GameDex Public Folder
 
+This folder contains all materials that are hosted on Firebase. Each folder corresponds to a specific homework (see site map below). In addition, this folder contains assets related to the team page, as well as the team page itself.
 
 ### Can I help you find something?
 
