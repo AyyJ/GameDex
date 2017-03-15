@@ -206,7 +206,7 @@ foo.handleLogout = function() {
 foo.handleAddGameButton = function() {
    //window.location.replace('edit.html');
    foo.openForm();
-   document.getElementById('game_submit').addEventListener('click', foo.handleNewGameSubmit, false);
+   document.getElementById('game_submit').addEventListener('submit', foo.handleNewGameSubmit, false);
    document.getElementById('form_type_label').innerText = 'Add a new game.';
 }
 
@@ -327,7 +327,7 @@ foo.closeForm = function() {
    document.getElementById('game_reldate').value = '';
    document.getElementById('game_price').value = '';
    var dropGameSystem = document.getElementById("game_system");
-   dropGameSystem.options[dropGameSystem.selectedIndex].value = 0;
+   dropGameSystem.options[dropGameSystem.selectedIndex].value = 4;
    document.getElementById('game_genre').value = '';
 
    // Switch between sections.
@@ -427,7 +427,7 @@ foo.createGameEntry = function(key, title, desc, reldate, price, system, genre) 
    gameElement.getElementsByClassName('game_title')[0].innerText = title + " : ";
    gameElement.getElementsByClassName('game_desc')[0].innerText = desc + " : ";
    gameElement.getElementsByClassName('game_reldate')[0].innerText = reldate + " : ";
-   gameElement.getElementsByClassName('game_price')[0].innerText = price + " : ";
+   gameElement.getElementsByClassName('game_price')[0].innerText = '$' + price + " : ";
    gameElement.getElementsByClassName('game_system')[0].innerText = system + " : ";
    gameElement.getElementsByClassName('game_genre')[0].innerText = genre;
 
