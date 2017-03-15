@@ -1,0 +1,2 @@
+# /public/demo Folder
+This folder contains pages for the homework 4 submission where we were tasked to create a simple page demonstrating our ability to have text CRUD (Create, Read, Update and Delete) linking to our Firebase server as well as asset management (essentially image CRUD). Each style of page (css, js, html) is split up into their respective folders with an index.html tieing it all together. 
