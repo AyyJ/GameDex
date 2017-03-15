@@ -5,8 +5,8 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="css/final.css" type="text/css">
-</head>
-<body>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
    <script src="js/final.js"></script>
    <script type="text/javascript">
@@ -14,7 +14,10 @@
          foo.initMainPage();
       };
    </script>
-
+</head>
+<body>
+<div id="homecenter2"> 
+	<div id="homecenter3">
    <header>
       <h1>GameDex</h1>
       <span id="displayName"></span>
@@ -25,15 +28,12 @@
       <div id="edit_form">
          <p><span id="form_type_label"></span></p>
          <input id="game_key" type="hidden">
-         <label>Title <input id="game_title" type="text"></label>
-         <br>
-         <label>Description <input id="game_desc" type="text"></label>
-         <br>
-         <label>Release Date <input id="game_reldate" type="date"></label>
-         <br>
-         <label>Purchase Price $<input id="game_price" type="text" pattern="^\d*(\.\d{2}$)?"></label>
-         <br>
-         <label>Game System
+		 <table class="table" style="width:50%;">
+         <tr><td><label>Title </label> </td><td><input id="game_title" type="text"></td></tr>
+         <tr><td><label>Description </label> </td><td><input id="game_desc" type="text"></td></tr>
+         <tr><td><label>Release Date </label> </td><td><input id="game_reldate" type="date"></td></tr>
+         <tr><td><label>Purchase Price $</label> </td><td><input id="game_price" type="text" pattern="^\d*(\.\d{2}$)?"></td></tr>
+         <tr><td><label>Game System</label> </td><td>
           <select id="game_system" required>
               <option value="0" disabled selected>Select Game System</option>
               <optgroup label="Consoles">
@@ -52,13 +52,11 @@
                   <option value="3.1">Linux</option>
               </optgroup>
               <option value ="4">Other</option>
-          </select>
-         </label>
-         <br>
-         <label>Genre <input id="game_genre" type="text"></label>
-         <br>
-         <button id="game_submit" type="button">Submit</button>
-         <button id="game_cancel" type="button">Cancel</button>
+          </select></td></tr>
+         <tr><td><label>Genre</label> </td><td> <input id="game_genre" type="text">
+         <tr><td><button id="game_submit" type="button">Submit</button> </td><td>
+         <button id="game_cancel" type="button">Cancel</button></td></tr>
+		 </table>
       </div>
    </section>
 
@@ -76,6 +74,7 @@
    <footer>
       <p>&copy; 2017</p>
    </footer>
-
+</div>
+	</div>
 </body>
 </html>
