@@ -424,11 +424,11 @@ foo.createGameEntry = function(key, title, desc, reldate, price, system, genre) 
    var gameElement = div.firstChild;
 
    // Set values.
-   gameElement.getElementsByClassName('game_title')[0].innerText = title;
-   gameElement.getElementsByClassName('game_desc')[0].innerText = desc;
-   gameElement.getElementsByClassName('game_reldate')[0].innerText = reldate;
-   gameElement.getElementsByClassName('game_price')[0].innerText = price;
-   gameElement.getElementsByClassName('game_system')[0].innerText = system;
+   gameElement.getElementsByClassName('game_title')[0].innerText = title + " : ";
+   gameElement.getElementsByClassName('game_desc')[0].innerText = desc + " : ";
+   gameElement.getElementsByClassName('game_reldate')[0].innerText = reldate + " : ";
+   gameElement.getElementsByClassName('game_price')[0].innerText = price + " : ";
+   gameElement.getElementsByClassName('game_system')[0].innerText = system + " : ";
    gameElement.getElementsByClassName('game_genre')[0].innerText = genre;
 
 
