@@ -217,8 +217,7 @@ foo.handleLogout = function() {
 foo.handleAddGameButton = function() {
    //window.location.replace('edit.html');
    foo.openForm();
-   console.log('opening Handle')
-   document.getElementById('game_submit').addEventListener('submit', foo.handleNewGameSubmit, false);
+   document.getElementById('game_submit').addEventListener('click', foo.handleNewGameSubmit, false);
    document.getElementById('form_type_label').innerText = 'Add a new game.';
 }
 
@@ -227,7 +226,6 @@ foo.handleAddGameButton = function() {
  * Function: Process the Add/Edit a game submission button.
  */
 foo.handleNewGameSubmit = function() {
-   console.log('entering game submit');
    var txtimage = document.getElementById('game_image').value;
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
@@ -236,7 +234,7 @@ foo.handleNewGameSubmit = function() {
    var dropGameSystem = document.getElementById("game_system");
    var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
    var txtGameGenre = document.getElementById('game_genre').value;
-   foo.writeGameData(txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
+   foo.writeGameData(txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
    foo.closeForm();
 }
 
@@ -245,12 +243,9 @@ foo.handleNewGameSubmit = function() {
  * Function: Writes the game data to firebase.
  */
 foo.writeGameData = function(txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre) {
-   console.log('writeGameData');
-
    var libraryRef = foo.getUserGameLibraryRef();
    var newGameEntryRef = libraryRef.push();
 
-   console.log('libraryRef: ' + libraryRef);
    newGameEntryRef.set({
       image: txtimage,
       title: txtGameTitle,
@@ -299,7 +294,7 @@ foo.handleEditGameSubmit = function() {
    var dropGameSystem = document.getElementById("game_system");
    var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
    var txtGameGenre = document.getElementById('game_genre').value;
-   foo.editGameData(key,txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
+   foo.editGameData(key, txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
    foo.closeForm();
 }
 
@@ -396,6 +391,7 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
       var genre = data.val().genre;
 
       var child = document.createElement('tr');
+      child.setAttribute('id', 'game_' + key);
       child.innerHTML = foo.createGameEntry(key, image, title, desc, reldate, price, system, genre);
       var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
       gameElement.append(child);
@@ -404,21 +400,21 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
    libraryRef.on('child_changed', function(data) {
       var key = data.key;
       //var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
-      var gameEntry = document.getElementById('game_'+key);
-      gameEntry.getElementById('game_image_view')[0].innerText = data.val().image;
-      gameEntry.getElementById('game_title_view')[0].innerText = data.val().title;
-      gameEntry.getElementById('game_desc_view')[0].innerText = data.val().desc;
-      gameEntry.getElementById('game_reldate_view')[0].innerText = data.val().reldate;
-      gameEntry.getElementById('game_price_view')[0].innerText = data.val().price;
-      gameEntry.getElementById('game_system_view')[0].innerText = data.val().system;
-      gameEntry.getElementById('game_genre_view')[0].innerText = data.val().genre;
+
+      document.getElementById('game_image_view_game_' + key).innerText = data.val().image;
+      document.getElementById('game_title_view_game_' + key).innerText = data.val().title;
+      document.getElementById('game_desc_view_game_' + key).innerText = data.val().desc;
+      document.getElementById('game_reldate_view_game_' + key).innerText = data.val().reldate;
+      document.getElementById('game_price_view_game_' + key).innerText = data.val().price;
+      document.getElementById('game_system_view_game_' + key).innerText = data.val().system;
+      document.getElementById('game_genre_view_game_' + key).innerText = data.val().genre;
 
    });
 
    libraryRef.on('child_removed', function(data) {
       var key = data.key;
-      var gameElement = document.getElementById('game_' + key);
-      gameElement.parentElement.removeChild(gameElement);
+      var row = document.getElementById('game_' + key);
+      row.parentNode.removeChild(row);
    });
 }
 
@@ -429,16 +425,15 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
  foo.createGameEntry = function(key, image, title, desc, reldate, price, system, genre) {
    // HTML to build the game entry.
    var html =
-   '<tr id="game_' + key + ' class="game_entries">' +
-   '<td id="game_image_view">' + image + '</td>' +
-   '<td id="game_title_view">' + title + '</td>' +
-   '<td id="game_desc_view">' + desc + '</td>' +
-   '<td id="game_reldate_view">' + reldate + '</td>' +
-   '<td id="game_price_view">' + price + '</td>' +
-   '<td id="game_system_view">' + system + '</td>' +
-   '<td id="game_genre_view">' + genre + '</td>' +
+   '<td id="game_image_view_game_' + key + '">' + image + '</td>' +
+   '<td id="game_title_view_game_' + key + '">' + title + '</td>' +
+   '<td id="game_desc_view_game_' + key + '">' + desc + '</td>' +
+   '<td id="game_reldate_view_game_' + key + '">' + reldate + '</td>' +
+   '<td id="game_price_view_game_' + key + '">' + price + '</td>' +
+   '<td id="game_system_view_game_' + key + '">' + system + '</td>' +
+   '<td id="game_genre_view_game_' + key + '">' + genre + '</td>' +
    '<td><button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button></td>' +
-   '<td><button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button></td></tr>';
+   '<td><button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button></td></tr></div>';
    return html;
 }
 
