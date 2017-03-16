@@ -379,6 +379,17 @@ foo.startFirebaseQuery = function() {
  * Function: Starts listening for new games and populates the game list.
  */
 foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
+   libraryRef.once('value', function(snapshot) {
+          var exists = (snapshot.val() !== null);
+          if(exists == false){
+            var table = document.getElementById('game_library');
+            table.style.display = 'none';
+            var librarySection = document.getElementById('section_library');
+            var newOne = document.createElement('div');
+            newOne.innerHTML = '<br><br><h4>You don\'t have any games yet! Add your favorites by clicking "\Add a New Game\" above!</h4>';
+            librarySection.append(newOne);
+          }
+        });
 
    libraryRef.on('child_added', function(data) {
       var key = data.key;
