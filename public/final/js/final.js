@@ -177,12 +177,23 @@ foo.initMainPage = function() {
 foo.loadDisplayName = function(user) {
    if (user) {
       if (user.displayName) {
-          document.getElementById('displayName').innerHTML =  user.displayName;
+          var lastChar = user.displayName.slice(-1);
+          if(lastChar != 's'){
+            document.getElementById('displayName').innerHTML =  user.displayName + '\'s GameDex';
+          } else{
+            document.getElementById('displayName').innerHTML =  user.displayName + '\' GameDex';
+          }
       } else {
          var userFirebasePath = 'users/' + firebase.auth().currentUser.uid;
          var userRef = firebase.database().ref(userFirebasePath);
          userRef.once('value').then(function(snapshot) {
-            document.getElementById('displayName').innerHTML = snapshot.child('display_name').val();;
+            document.getElementById('displayName').innerHTML = snapshot.child('display_name').val() + '\'s GameDex';
+            var lastChar = snapshot.child('display_name').val().slice(-1);
+            if(lastChar != 's'){
+              document.getElementById('displayName').innerHTML = snapshot.child('display_name').val() + '\'s GameDex';
+            } else{
+              document.getElementById('displayName').innerHTML = snapshot.child('display_name').val() + '\' GameDex';
+            }
          });
       }
    }
@@ -384,12 +395,12 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
       var key = data.key;
       //var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
       var gameEntry = document.getElementById('game_'+key);
-      gameEntry.getElementsByClassName('game_title')[0].innerText = data.val().title;
-      gameEntry.getElementsByClassName('game_desc')[0].innerText = data.val().desc;
-      gameEntry.getElementsByClassName('game_reldate')[0].innerText = data.val().reldate;
-      gameEntry.getElementsByClassName('game_price')[0].innerText = data.val().price;
-      gameEntry.getElementsByClassName('game_system')[0].innerText = data.val().system;
-      gameEntry.getElementsByClassName('game_genre')[0].innerText = data.val().genre;
+      gameEntry.getElementById('game_title_view')[0].innerText = data.val().title;
+      gameEntry.getElementById('game_desc_view')[0].innerText = data.val().desc;
+      gameEntry.getElementById('game_reldate_view')[0].innerText = data.val().reldate;
+      gameEntry.getElementById('game_price_view')[0].innerText = data.val().price;
+      gameEntry.getElementById('game_system_view')[0].innerText = data.val().system;
+      gameEntry.getElementById('game_genre_view')[0].innerText = data.val().genre;
 
    });
 
@@ -407,30 +418,30 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 foo.createGameEntry = function(key, title, desc, reldate, price, system, genre) {
    // HTML to build the game entry.
    var html =
-      '<div id="game_' + key + '" class="game_entries">' +
-         '<span class="game_title"></span>' +
-         '<span class="game_desc"></span>' +
-         '<span class="game_reldate"></span>' +
-         '<span class="game_price"></span>' +
-         '<span class="game_system"></span>' +
-         '<span class="game_genre"></span>' +
-      '<button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button>' +
-         '<button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button>' +
-      '</div>';
+      '<tr id="game_' + key + '" class="game_entries">' +
+         '<td id="game_title_view"></td>' +
+         '<td id="game_desc_view"></td>' +
+         '<td id="game_reldate_view"></td>' +
+         '<td id="game_price_view"></td>' +
+         '<td id="game_system_view"></td>' +
+         '<td id="game_genre_view"></td>' +
+      '<td><button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button></td>' +
+         '<td><button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button></td></tr>' +
+      '</tr>';
 
    // Create the DOM element from the HTML.
-   var div = document.createElement('div');
+   var tr = document.createElement('div');
    div.innerHTML = html;
    var gameElement = div.firstChild;
 
    // Set values.
-   gameElement.getElementsByClassName('game_title')[0].innerText = title + " : ";
-   gameElement.getElementsByClassName('game_desc')[0].innerText = desc + " : ";
-   gameElement.getElementsByClassName('game_reldate')[0].innerText = reldate + " : ";
-   gameElement.getElementsByClassName('game_price')[0].innerText = '$' + price + " : ";
-   gameElement.getElementsByClassName('game_system')[0].innerText = system + " : ";
-   gameElement.getElementsByClassName('game_genre')[0].innerText = genre;
-
+   gameElement.getElementById('game_title_view')[0].innerText = title;
+   gameElement.getElementById('game_desc_view')[0].innerText = desc;
+   gameElement.getElementById('game_reldate_view')[0].innerText = reldate;
+   gameElement.getElementById('game_price_view')[0].innerText = '$' + price;
+   gameElement.getElementById('game_system_view')[0].innerText = system;
+   gameElement.getElementById('game_genre_view')[0].innerText = genre;
+   document.getElementById('game_entries').append(gameElement);
 
     return gameElement;
 }
