@@ -166,6 +166,8 @@ foo.initMainPage = function() {
          document.getElementById('game_cancel').addEventListener('click', foo.handleGameCancelButton, false);
          // Load games list.
          foo.startFirebaseQuery();
+      } else {
+         window.location.replace('index.html');
       }
    });
 }
