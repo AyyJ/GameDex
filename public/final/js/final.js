@@ -10,6 +10,7 @@ var config = {
 };
 var app = firebase.initializeApp(config);
 var db = firebase.database();
+var storage = firebase.storage();
 
 
 /*
@@ -228,7 +229,7 @@ foo.handleAddGameButton = function() {
  * Function: Process the Add/Edit a game submission button.
  */
 foo.handleNewGameSubmit = function() {
-   var txtimage = document.getElementById('game_image').value;
+   var imageFile = document.getElementById('game_image').files[0];
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
    var txtGameReldate = document.getElementById('game_reldate').value;
@@ -236,7 +237,7 @@ foo.handleNewGameSubmit = function() {
    var dropGameSystem = document.getElementById("game_system");
    var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
    var txtGameGenre = document.getElementById('game_genre').value;
-   foo.writeGameData(txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
+   foo.writeGameData(imageFile, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
    foo.closeForm();
 }
 
@@ -244,12 +245,41 @@ foo.handleNewGameSubmit = function() {
 /*
  * Function: Writes the game data to firebase.
  */
-foo.writeGameData = function(txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre) {
+foo.writeGameData = function(imageFile, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre) {
+
+   /* Asset management (Image CRUD) */
+   var currentUserId = firebase.auth().currentUser.uid;
+   var imageid = currentUserId + Date.now() + '.jpg';
+   var storageRef = firebase.storage().ref();
+   //var destRef = storageRef.child(imageid);
+   //var destImageRef = storageRef.child('images/' + imageid);
+   var imageMetadata = {
+      contentType: 'image/jpeg'
+   };
+   var uploadTask = storageRef.child(imageid).put(imageFile, imageMetadata);
+
+   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+         function(snapshot) {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress +'% done');
+            switch (snapshot.state) {
+               case firebase.storage.TaskState.PAUSED:
+                  console.log('Upload is paused');
+                  break;
+               case firebase.storage.TaskState.RUNNING:
+                  console.log('Upload is running');
+                  break;
+            }
+         }, function(error) {
+            console.log('An error occured: ' + error.code);
+         });
+
+   /* Text CRUD */
    var libraryRef = foo.getUserGameLibraryRef();
    var newGameEntryRef = libraryRef.push();
 
    newGameEntryRef.set({
-      image: txtimage,
+      imageURL: imageid,
       title: txtGameTitle,
       desc: txtGameDesc,
       reldate: txtGameReldate,
@@ -395,7 +425,7 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 
    libraryRef.on('child_added', function(data) {
       var key = data.key;
-      var image = data.val().image;
+      var imageURL = data.val().imageURL;
       var title = data.val().title;
       var desc = data.val().desc;
       var reldate = data.val().reldate;
@@ -405,7 +435,7 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 
       var child = document.createElement('tr');
       child.setAttribute('id', 'game_' + key);
-      child.innerHTML = foo.createGameEntry(key, image, title, desc, reldate, price, system, genre);
+      child.innerHTML = foo.createGameEntry(key, imageURL, title, desc, reldate, price, system, genre);
       var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
       gameElement.append(child);
    });
@@ -435,7 +465,14 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 /*
  * Function: Builds the game entry HTML for the user's game library.
  */
- foo.createGameEntry = function(key, image, title, desc, reldate, price, system, genre) {
+ foo.createGameEntry = function(key, imageURL, title, desc, reldate, price, system, genre) {
+    // Build full image URL
+    var storageRef = firebase.storage().ref()
+    var imageRef = storageRef.child(imageURL);
+    //var imageRef = storageRef.child('')
+
+    
+
    // HTML to build the game entry.
    var html =
    '<td id="game_image_view_game_' + key + '">' + image + '</td>' +
