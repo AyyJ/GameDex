@@ -226,6 +226,7 @@ foo.handleAddGameButton = function() {
  * Function: Process the Add/Edit a game submission button.
  */
 foo.handleNewGameSubmit = function() {
+   var txtimage = document.getElementById('game_image').value;
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
    var txtGameReldate = document.getElementById('game_reldate').value;
@@ -241,11 +242,12 @@ foo.handleNewGameSubmit = function() {
 /*
  * Function: Writes the game data to firebase.
  */
-foo.writeGameData = function(txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre) {
+foo.writeGameData = function(txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre) {
    var libraryRef = foo.getUserGameLibraryRef();
    var newGameEntryRef = libraryRef.push();
 
    newGameEntryRef.set({
+      image: txtimage,
       title: txtGameTitle,
       desc: txtGameDesc,
       reldate: txtGameReldate,
@@ -267,6 +269,7 @@ foo.handleEditGameButton = function(key) {
    libraryRef.child(key).once('value')
       .then(function(dataSnapshot) {
          document.getElementById('game_key').value = key;
+         document.getElementById('game_image').value = dataSnapshot.child('image').val()
          document.getElementById('game_title').value = dataSnapshot.child('title').val();
          document.getElementById('game_desc').value = dataSnapshot.child('desc').val();
          document.getElementById('game_reldate').value = dataSnapshot.child('reldate').val();
@@ -283,6 +286,7 @@ foo.handleEditGameButton = function(key) {
  */
 foo.handleEditGameSubmit = function() {
    var key = document.getElementById('game_key').value;
+   var txtimage = document.getElementById('game_image').value;
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
    var txtGameReldate = document.getElementById('game_reldate').value;
@@ -298,9 +302,10 @@ foo.handleEditGameSubmit = function() {
 /*
  * Function: Edits a game in the user's library.
  */
-foo.editGameData = function(key, title, desc, reldate, price, system, genre) {
+foo.editGameData = function(key, image, title, desc, reldate, price, system, genre) {
    var libraryRef = foo.getUserGameLibraryRef();
    libraryRef.child(key).set({
+      'image': image,
       'title': title,
       'desc': desc,
       'reldate': reldate,
@@ -332,6 +337,7 @@ foo.closeForm = function() {
 
    // Return all fields to default.
    document.getElementById('game_key').value = '';
+   document.getElementById('game_image').value = '';
    document.getElementById('game_title').value = '';
    document.getElementById('game_desc').value = '';
    document.getElementById('game_desc').value = '';
@@ -376,6 +382,7 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 
    libraryRef.on('child_added', function(data) {
       var key = data.key;
+      var image = data.val().image;
       var title = data.val().title;
       var desc = data.val().desc;
       var reldate = data.val().reldate;
@@ -383,18 +390,17 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
       var system = data.val().system;
       var genre = data.val().genre;
 
-       var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
-
-      gameElement.insertBefore(
-         foo.createGameEntry(key, title, desc, reldate, price, system, genre),
-         gameElement.firstChild
-      );
+      var child = document.createElement('tr');
+      child.innerHTML = foo.createGameEntry(key, image, title, desc, reldate, price, system, genre);
+      var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
+      gameElement.append(child);
    });
 
    libraryRef.on('child_changed', function(data) {
       var key = data.key;
       //var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
       var gameEntry = document.getElementById('game_'+key);
+      gameEntry.getElementById('game_image_view')[0].innerText = data.val().image;
       gameEntry.getElementById('game_title_view')[0].innerText = data.val().title;
       gameEntry.getElementById('game_desc_view')[0].innerText = data.val().desc;
       gameEntry.getElementById('game_reldate_view')[0].innerText = data.val().reldate;
@@ -415,35 +421,20 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 /*
  * Function: Builds the game entry HTML for the user's game library.
  */
-foo.createGameEntry = function(key, title, desc, reldate, price, system, genre) {
+ foo.createGameEntry = function(key, image, title, desc, reldate, price, system, genre) {
    // HTML to build the game entry.
    var html =
-      '<tr id="game_' + key + '" class="game_entries">' +
-         '<td id="game_title_view"></td>' +
-         '<td id="game_desc_view"></td>' +
-         '<td id="game_reldate_view"></td>' +
-         '<td id="game_price_view"></td>' +
-         '<td id="game_system_view"></td>' +
-         '<td id="game_genre_view"></td>' +
-      '<td><button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button></td>' +
-         '<td><button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button></td></tr>' +
-      '</tr>';
-
-   // Create the DOM element from the HTML.
-   var tr = document.createElement('div');
-   div.innerHTML = html;
-   var gameElement = div.firstChild;
-
-   // Set values.
-   gameElement.getElementById('game_title_view')[0].innerText = title;
-   gameElement.getElementById('game_desc_view')[0].innerText = desc;
-   gameElement.getElementById('game_reldate_view')[0].innerText = reldate;
-   gameElement.getElementById('game_price_view')[0].innerText = '$' + price;
-   gameElement.getElementById('game_system_view')[0].innerText = system;
-   gameElement.getElementById('game_genre_view')[0].innerText = genre;
-   document.getElementById('game_entries').append(gameElement);
-
-    return gameElement;
+   '<tr id="game_' + key + ' class="game_entries">' +
+   '<td id="game_image_view">' + image + '</td>' +
+   '<td id="game_title_view">' + title + '</td>' +
+   '<td id="game_desc_view">' + desc + '</td>' +
+   '<td id="game_reldate_view">' + reldate + '</td>' +
+   '<td id="game_price_view">' + price + '</td>' +
+   '<td id="game_system_view">' + system + '</td>' +
+   '<td id="game_genre_view">' + genre + '</td>' +
+   '<td><button type="button" onclick="foo.handleEditGameButton(\''+ key +'\')">Edit</button></td>' +
+   '<td><button type="button" onclick="foo.handleRemoveGameButton(\''+ key +'\')">Remove</button></td></tr>';
+   return html;
 }
 
 
