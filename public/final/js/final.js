@@ -300,8 +300,9 @@ foo.handleEditGameButton = function(key) {
    var libraryRef = foo.getUserGameLibraryRef();
    libraryRef.child(key).once('value')
       .then(function(dataSnapshot) {
+         var imageURL = dataSnapshot.child('imageURL').val();
+         document.getElementById('oldImageURL').value = imageURL;
          document.getElementById('game_key').value = key;
-         document.getElementById('game_image').value = dataSnapshot.child('image').val()
          document.getElementById('game_title').value = dataSnapshot.child('title').val();
          document.getElementById('game_desc').value = dataSnapshot.child('desc').val();
          document.getElementById('game_reldate').value = dataSnapshot.child('reldate').val();
@@ -309,7 +310,22 @@ foo.handleEditGameButton = function(key) {
          var dropGameSystem = document.getElementById("game_system");
          dropGameSystem.options[dropGameSystem.selectedIndex].text = dataSnapshot.child('system').val();
          document.getElementById('game_genre').value = dataSnapshot.child('genre').val();
+
+         foo.loadImageEditPage(key, imageURL);
       });
+}
+
+/*
+ * Function: Loads the image from the Firebase storage for the Edit page.
+ */
+foo.loadImageEditPage = function(key, imageURL) {
+   var storageRef = firebase.storage().ref();
+   storageRef.child(imageURL).getDownloadURL().then(function(url) {
+      var imgContainer = document.getElementById('img_container');
+      imgContainer.innerHTML = '<img src="'+url+'">';
+   }).catch(function(error) {
+      console.log('Error loading image: ' + error.code)
+   });
 }
 
 
@@ -318,7 +334,8 @@ foo.handleEditGameButton = function(key) {
  */
 foo.handleEditGameSubmit = function() {
    var key = document.getElementById('game_key').value;
-   var txtimage = document.getElementById('game_image').value;
+   var oldImageURL = document.getElementById('oldImageURL').value;
+   var newImageFile = document.getElementById('game_image').files[0];
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
    var txtGameReldate = document.getElementById('game_reldate').value;
@@ -326,7 +343,7 @@ foo.handleEditGameSubmit = function() {
    var dropGameSystem = document.getElementById("game_system");
    var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
    var txtGameGenre = document.getElementById('game_genre').value;
-   foo.editGameData(key, txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
+   foo.editGameData(key, oldImageURL, newImageFile, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
    foo.closeForm();
 }
 
@@ -334,11 +351,42 @@ foo.handleEditGameSubmit = function() {
 /*
  * Function: Edits a game in the user's library.
  */
-foo.editGameData = function(key, image, title, desc, reldate, price, system, genre) {
+foo.editGameData = function(key, oldImageURL, newImageFile, title, desc, reldate, price, system, genre) {
+
+   var imageid = oldImageURL;
+
+   /* Asset management (Image CRUD) */
+   if (newImageFile) {
+      var currentUserId = firebase.auth().currentUser.uid;
+      imageid = currentUserId + Date.now() + '.jpg';
+      var storageRef = firebase.storage().ref();
+      var imageMetadata = {
+         contentType: 'image/jpeg'
+      };
+      var uploadTask = storageRef.child(imageid).put(newImageFile, imageMetadata);
+
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            function(snapshot) {
+               var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+               console.log('Upload is ' + progress +'% done');
+               switch (snapshot.state) {
+                  case firebase.storage.TaskState.PAUSED:
+                     console.log('Upload is paused');
+                     break;
+                  case firebase.storage.TaskState.RUNNING:
+                     console.log('Upload is running');
+                     break;
+               }
+            }, function(error) {
+               console.log('An error occured: ' + error.code);
+            });
+   }
+
+   /* Text CRUD */
    var libraryRef = foo.getUserGameLibraryRef();
    libraryRef.child(key).set({
-      'image': image,
       'title': title,
+      'imageURL': imageid,
       'desc': desc,
       'reldate': reldate,
       'price': price,
@@ -346,6 +394,7 @@ foo.editGameData = function(key, image, title, desc, reldate, price, system, gen
       'genre': genre
    });
 }
+
 
 /*
  * Function: Hides the library and displays the edit form.
@@ -435,22 +484,24 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 
       var child = document.createElement('tr');
       child.setAttribute('id', 'game_' + key);
-      child.innerHTML = foo.createGameEntry(key, imageURL, title, desc, reldate, price, system, genre);
+      child.innerHTML = foo.createGameEntry(key, title, desc, reldate, price, system, genre);
       var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
       gameElement.append(child);
+      foo.loadImageListView(key, imageURL);
    });
 
    libraryRef.on('child_changed', function(data) {
       var key = data.key;
       //var gameElement = libraryElement.getElementsByClassName('game_entries')[0];
 
-      document.getElementById('game_image_view_game_' + key).innerText = data.val().image;
       document.getElementById('game_title_view_game_' + key).innerText = data.val().title;
       document.getElementById('game_desc_view_game_' + key).innerText = data.val().desc;
       document.getElementById('game_reldate_view_game_' + key).innerText = data.val().reldate;
       document.getElementById('game_price_view_game_' + key).innerText = data.val().price;
       document.getElementById('game_system_view_game_' + key).innerText = data.val().system;
       document.getElementById('game_genre_view_game_' + key).innerText = data.val().genre;
+
+      foo.loadImageListView(key, data.val().imageURL);
 
    });
 
@@ -465,17 +516,10 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
 /*
  * Function: Builds the game entry HTML for the user's game library.
  */
- foo.createGameEntry = function(key, imageURL, title, desc, reldate, price, system, genre) {
-    // Build full image URL
-    var storageRef = firebase.storage().ref()
-    var imageRef = storageRef.child(imageURL);
-    //var imageRef = storageRef.child('')
-
-    
-
+ foo.createGameEntry = function(key, title, desc, reldate, price, system, genre) {
    // HTML to build the game entry.
    var html =
-   '<td id="game_image_view_game_' + key + '">' + image + '</td>' +
+   '<td id="game_image_view_game_' + key + '"><img id="game_image_element'+key+'"></td>' +
    '<td id="game_title_view_game_' + key + '">' + title + '</td>' +
    '<td id="game_desc_view_game_' + key + '">' + desc + '</td>' +
    '<td id="game_reldate_view_game_' + key + '">' + reldate + '</td>' +
@@ -487,6 +531,20 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
    return html;
 }
 
+
+/*
+ * Function: Loads the image from the Firebase storage for the Main page.
+ */
+foo.loadImageListView = function(key, imageURL) {
+   var storageRef = firebase.storage().ref();
+   storageRef.child(imageURL).getDownloadURL().then(function(url) {
+      var imgContainer = document.getElementById('game_image_view_game_' + key);
+      imgContainer.innerHTML = '<img src="'+url+'">';
+   }).catch(function(error) {
+      // Lame hack to fix the asynchronous image loading.
+      window.location.replace('main.html');
+   });
+}
 
 /*
  * Function: Handles the remove game button.
