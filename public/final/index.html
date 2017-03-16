@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>GameDex</title>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-   <script src="js/final.js"></script>
-   <script type="text/javascript">
-      window.onload = function() {
-         foo.initLoginPage();
-      };
-   </script>
-   <link rel="stylesheet" href="css/final.css" type="text/css">
+ <title>GameDex</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+ <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+ <script src="js/final.js"></script>
+ <script type="text/javascript">
+ window.onload = function() {
+   foo.initLoginPage();
+ };
+ </script>
+ <link rel="stylesheet" href="css/better.css" type="text/css">
+ <link rel="stylesheet" href="css/final.css" type="text/css">
+
 </head>
 <body>
-   <div id="homecenter"> 
-	<div id="homecenter1">
-	<h1>GameDex</h1>
-   <h4>Please log in.</h4>
-	<table class="table" style="width:50%;">
-      <tr><td><label>Email</label> </td><td><input id="login_email" type="text" size="30"></td></tr>
-      <tr><td><label>Password</label> </td><td><input id="login_pass" type="password" size="30"></td></tr>
-      <tr><td><input id="login_submit" type="button" value="Login" />
-      </td><td><input id="login_register" type="button" value="Register" />
-	  </td></tr>
-      <tr><td colspan="2"><a class="googleLogin" id="googleLogin"></a></td></tr>
-	  </table>
-	  	</div>
-	</div>
+  <!-- Start Bootstramp Sample Nav -->
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+    <a class="navbar-brand" href="#">GameDex</a>
+  </nav>
+  <!-- End Bootstrap Sample Nav -->
+
+  <form class="login">
+    <h4>Please log in</h4>
+    <label>Email</label><input id="login_email" type="text" size="15" class="form-control">
+    <label>Password</label><input id="login_pass" type="password" size="15" class="form-control">
+    <input id="login_submit" type="button" class="btn btn-lg btn-primary btn-block" value="Login" />
+    <input id="login_register" type="button" class="btn btn-lg btn-primary btn-block" value="Register" />
+    <a class="googleLogin" id="googleLogin" style="margin: 0 auto;"></a>
+  </form>
 </body>
 </html>

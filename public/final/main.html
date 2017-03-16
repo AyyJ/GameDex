@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>GameDex</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/final.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-    <script src="js/final.js"></script>
-    <script type="text/javascript">
-        window.onload = function() {
+    <head>
+        <title>GameDex</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/final.css" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+        <script src="js/final.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
             foo.initMainPage();
-        };
-    </script>
-</head>
+            };
+        </script>
+    </head>
 <body>
-<div id="homecenter2">
-    <div id="homecenter3">
-        <header>
-            <h1>GameDex</h1>
-            <span id="displayName"></span>
-            <button id="logout" type="button">Logout</button>
-        </header>
+    <!-- Start Bootstrap Sample Nav -->
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <a class="navbar-brand" href="#">GameDex</a>
+
+     <ul class="navbar-nav mx-auto w-100">
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="add_game">Add a New Game</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="logout">Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End Bootstrap Sample Nav -->
+    <div class="container" style="margin-top: 10%">
+
+        <h1>GameDex</h1>
+        <span id="displayName"></span>
+        <button id="logout" type="button">Logout</button>
 
         <section id="section_form" style="display:none">
             <div id="edit_form">
@@ -35,8 +50,8 @@
                         <tr><td><label>Release Date </label> </td><td><input id="game_reldate" type="date" required></td></tr>
                         <tr><td><label>Purchase Price $</label> </td><td><input id="game_price" type="text" pattern="^\d*(\.\d{2}$)?"></td></tr>
                         <tr><td><label>Game System</label> </td><td>
-                            <select id="game_system" required>
-                                <option value="" disabled selected>Select Game System</option>
+                        <select id="game_system" required>
+                            <option value="" disabled selected>Select Game System</option>
                                 <optgroup label="Consoles">
                                     <option value="1.1">XBOX</option>
                                     <option value="1.2">PlayStation</option>
@@ -47,22 +62,22 @@
                                 <optgroup label="Table-top">
                                     <option value="2.1">Cards</option>
                                 </optgroup>
-                                <optgroup label="Computer">
+                                    <optgroup label="Computer">
                                     <option value="3.1">PC</option>
                                     <option value="3.1">macOS</option>
                                     <option value="3.1">Linux</option>
                                 </optgroup>
-                                <option value ="4">Other</option>
-                            </select></td></tr>
+                            <option value ="4">Other</option>
+                        </select></td></tr>
                         <tr><td><label>Genre</label> </td><td> <input id="game_genre" type="text" required>
                         <tr><td><input id="game_submit" type="submit" value="Submit"> </td><td>
-                            <button id="game_cancel" type="button">Cancel</button></td></tr></table></form></div></section>
+                        <button id="game_cancel" type="button">Cancel</button></td></tr>
+                    </table>
+                </form>
+            </div>
+        </section>
 
         <section id="section_library" style="display:inline">
-            <div>
-                <button id="add_game" type="button">Add</button>
-            </div>
-
             <div id="game_library">
                 <div class="game_entries">
                 </div>
@@ -73,6 +88,5 @@
             <p>&copy; 2017</p>
         </footer>
     </div>
-</div>
 </body>
 </html>
