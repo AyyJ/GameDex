@@ -236,7 +236,7 @@ foo.writeGameData = function(txtGameImage,txtGameTitle, txtGameDesc, txtGameReld
    var newGameEntryRef = libraryRef.push();
 
    newGameEntryRef.set({
-	  image: txtGameImage
+	  image: txtGameImage,
       title: txtGameTitle,
       desc: txtGameDesc,
       reldate: txtGameReldate,
@@ -283,7 +283,7 @@ foo.handleEditGameSubmit = function() {
    var dropGameSystem = document.getElementById("game_system");
    var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
    var txtGameGenre = document.getElementById('game_genre').value;
-   foo.editGameData(key,txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
+   foo.editGameData(key,txtGameImage,txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
    foo.closeForm();
 }
 
@@ -291,7 +291,7 @@ foo.handleEditGameSubmit = function() {
 /*
  * Function: Edits a game in the user's library.
  */
-foo.editGameData = function(key, title, desc, reldate, price, system, genre) {
+foo.editGameData = function(key, image, title, desc, reldate, price, system, genre) {
    var libraryRef = foo.getUserGameLibraryRef();
    libraryRef.child(key).set({
 	  'image': image,
