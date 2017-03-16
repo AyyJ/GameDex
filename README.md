@@ -54,5 +54,17 @@ final
 
 As requested in the homework write up, we’ve left the un-minified version of both CSS and JS files in the project repo. We’ve split up each type of file into its individual folder (ex: css, js, images) to allow for easier code navigation. The reasoning behind using the Google images for sign-in was to follow the design guidelines set for using the Google single-sign on.
 
+## Performance
+We performed a few baseline tests to ensure our app was efficient. That included testing from WebPageTest.org as well as our own Android device on a throttled connection.
+
+###### WebPageTest.org
+From: Dulles, VA - Galaxy S5 - Chrome - Cable
+
+![alt text](webpagetest.png)
+
+###### Android Device Tests
+Throttled 3G connection load time average based on 5 runs: 1.83s
+Throughout the testing of the app, we received a constant time of around 1.25s to 1.41s to complete CRUD functions. This is consistent with the time it takes to call Firebase's authentication servers and various functions related to CRUD operations.
+
 ## Modifications to Original Idea
 To allow for sufficient time in completing the core requirements, we moved to remove the social aspect of our GameDex app. This means we no longer have the "friend" capability to view friends, view friends games, and the analytics portion. We recognize that this was a little over ambitious once we got to understand the difficulty with Firebase and JavaScript. Without the social components, we still feel GameDex makes sense as a "digital bookshelf" for your games instead of having to look around countless places to know if you have a game or not. You could even choose to show someone your mobile device, tablet, or desktop screen as a way of sharing and comparing with friends.
