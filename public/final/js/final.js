@@ -217,6 +217,7 @@ foo.handleLogout = function() {
 foo.handleAddGameButton = function() {
    //window.location.replace('edit.html');
    foo.openForm();
+   console.log('opening Handle')
    document.getElementById('game_submit').addEventListener('submit', foo.handleNewGameSubmit, false);
    document.getElementById('form_type_label').innerText = 'Add a new game.';
 }
@@ -226,6 +227,7 @@ foo.handleAddGameButton = function() {
  * Function: Process the Add/Edit a game submission button.
  */
 foo.handleNewGameSubmit = function() {
+   console.log('entering game submit');
    var txtimage = document.getElementById('game_image').value;
    var txtGameTitle = document.getElementById('game_title').value;
    var txtGameDesc = document.getElementById('game_desc').value;
@@ -243,9 +245,12 @@ foo.handleNewGameSubmit = function() {
  * Function: Writes the game data to firebase.
  */
 foo.writeGameData = function(txtimage, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre) {
+   console.log('writeGameData');
+
    var libraryRef = foo.getUserGameLibraryRef();
    var newGameEntryRef = libraryRef.push();
 
+   console.log('libraryRef: ' + libraryRef);
    newGameEntryRef.set({
       image: txtimage,
       title: txtGameTitle,
