@@ -380,7 +380,15 @@ foo.editGameData = function(key, oldImageURL, newImageFile, title, desc, reldate
             }, function(error) {
                console.log('An error occured: ' + error.code);
             });
+
+      //Remove the old image file.
+      var imageRef = storageRef.child(oldImageURL);
+      imageRef.delete().catch(function(error) {
+         console.log('Error deleting file.');
+      });
    }
+
+
 
    /* Text CRUD */
    var libraryRef = foo.getUserGameLibraryRef();
@@ -560,6 +568,16 @@ foo.handleRemoveGameButton = function(key) {
  */
 foo.removeGameData = function(key) {
    var libraryRef = foo.getUserGameLibraryRef();
+
+   libraryRef.child(key).once('value')
+      .then(function(dataSnapshot) {
+         var imageURL = dataSnapshot.child('imageURL').val();
+         var storageRef = firebase.storage().ref();
+         var imageRef = storageRef.child(imageURL);
+         imageRef.delete().catch(function(error) {
+            console.log('Error deleting file.');
+         });
+   });
    libraryRef.child(key).remove();
 }
 
