@@ -21,7 +21,7 @@ The last piece of the puzzle was to make calls to the database and perform the c
 ## Optimization
 We’ve optimized our code in the following ways:
 * Utilized minifying services such as JSCompress to minify our JavaScript code and cssminifier to minify our CSS
-* Ensured we only had necessary images stored on our database. This was completed by not storing images, rather storing targets to the images hosted elsewhere
+* Ensured we only had necessary images stored on our database.
 * Keeping mobile users in mind during development by maintaining a simple design with light image use
 
 ## Code
@@ -68,3 +68,11 @@ Throughout the testing of the app, we received a constant time of around 1.25s t
 
 ## Modifications to Original Idea
 To allow for sufficient time in completing the core requirements, we moved to remove the social aspect of our GameDex app. This means we no longer have the "friend" capability to view friends, view friends games, and the analytics portion. We recognize that this was a little over ambitious once we got to understand the difficulty with Firebase and JavaScript. Without the social components, we still feel GameDex makes sense as a "digital bookshelf" for your games instead of having to look around countless places to know if you have a game or not. You could even choose to show someone your mobile device, tablet, or desktop screen as a way of sharing and comparing with friends.
+
+## Lingering Issues / Missing features
+The site currently only supports JPEG images. It also does not have validation for ensuring the images are of a certain size. Due to a communication
+failure within the group and a misunderstanding of the assignment requirements, we simply ran out of time as we had to learn the Firebase storage APIs
+and implement our image Crude (asset management) in just one day.
+
+There are also numerous quality of life features that, if given more time, we'd implement such as a more user-friendly interface, increased
+data validation, and better execution of mobile styling.
