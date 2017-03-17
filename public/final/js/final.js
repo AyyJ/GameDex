@@ -342,7 +342,7 @@ foo.loadImageEditPage = function(key, imageURL) {
    var storageRef = firebase.storage().ref();
    storageRef.child(imageURL).getDownloadURL().then(function(url) {
       var imgContainer = document.getElementById('img_container');
-      imgContainer.innerHTML = '<img src="'+url+'">';
+      imgContainer.innerHTML = '<img id="imgEdit" src="'+url+'">';
    }).catch(function(error) {
       console.log('Error loading image: ' + error.code)
    });
@@ -440,6 +440,10 @@ foo.editGameData = function(key, oldImageURL, newImageFile, title, desc, reldate
 }
 
 
+foo.clearImage = function() {
+   document.getElementById('img_container').style.display = 'none';
+}
+
 /*
  * Function: Hides the library and displays the edit form.
  */
@@ -449,6 +453,8 @@ foo.openForm = function() {
 
    formSection.style.display = 'inline';
    librarySection.style.display = 'none';
+
+   document.getElementById('img_container').style.display = 'block';
 }
 
 
