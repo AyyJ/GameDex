@@ -221,6 +221,7 @@ foo.handleAddGameButton = function() {
    //window.location.replace('edit.html');
    foo.openForm();
    document.getElementById('game_submit').addEventListener('click', foo.handleNewGameSubmit, false);
+   document.getElementById('game_image').setAttribute('required', true);
    document.getElementById('form_type_label').innerText = 'Add a new game.';
 }
 
@@ -237,8 +238,11 @@ foo.handleNewGameSubmit = function() {
    var dropGameSystem = document.getElementById("game_system");
    var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
    var txtGameGenre = document.getElementById('game_genre').value;
-   foo.writeGameData(imageFile, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
-   foo.closeForm();
+
+   if (imageFile && txtGameTitle && txtGameDesc && txtGameReldate && txtGamePrice && txtGameSystem && txtGameGenre) {
+      foo.writeGameData(imageFile, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
+      foo.closeForm();
+   }
 }
 
 
@@ -272,9 +276,24 @@ foo.writeGameData = function(imageFile, txtGameTitle, txtGameDesc, txtGameReldat
             }
          }, function(error) {
             console.log('An error occured: ' + error.code);
+         }, function() {
+            /* Text CRUD */
+            var libraryRef = foo.getUserGameLibraryRef();
+            var newGameEntryRef = libraryRef.push();
+
+            newGameEntryRef.set({
+               imageURL: imageid,
+               title: txtGameTitle,
+               desc: txtGameDesc,
+               reldate: txtGameReldate,
+               price: txtGamePrice,
+               system: txtGameSystem,
+               genre: txtGameGenre
+            });
+            //foo.closeForm();
          });
 
-   /* Text CRUD */
+   /* Text CRUD *
    var libraryRef = foo.getUserGameLibraryRef();
    var newGameEntryRef = libraryRef.push();
 
@@ -286,7 +305,7 @@ foo.writeGameData = function(imageFile, txtGameTitle, txtGameDesc, txtGameReldat
       price: txtGamePrice,
       system: txtGameSystem,
       genre: txtGameGenre
-   });
+   });*/
 }
 
 /*
@@ -295,6 +314,7 @@ foo.writeGameData = function(imageFile, txtGameTitle, txtGameDesc, txtGameReldat
 foo.handleEditGameButton = function(key) {
    foo.openForm();
    document.getElementById('game_submit').addEventListener('click', foo.handleEditGameSubmit, false);
+   document.getElementById('game_image').removeAttribute('required');
    document.getElementById('form_type_label').innerText = 'Edit this game.';
 
    var libraryRef = foo.getUserGameLibraryRef();
@@ -343,8 +363,11 @@ foo.handleEditGameSubmit = function() {
    var dropGameSystem = document.getElementById("game_system");
    var txtGameSystem = dropGameSystem.options[dropGameSystem.selectedIndex].text;
    var txtGameGenre = document.getElementById('game_genre').value;
-   foo.editGameData(key, oldImageURL, newImageFile, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
-   foo.closeForm();
+
+   if (txtGameTitle && txtGameDesc && txtGameReldate && txtGamePrice && txtGameSystem && txtGameGenre) {
+      foo.editGameData(key, oldImageURL, newImageFile, txtGameTitle, txtGameDesc, txtGameReldate, txtGamePrice, txtGameSystem, txtGameGenre);
+      foo.closeForm();
+   }
 }
 
 
@@ -379,18 +402,31 @@ foo.editGameData = function(key, oldImageURL, newImageFile, title, desc, reldate
                }
             }, function(error) {
                console.log('An error occured: ' + error.code);
+            }, function() {
+               //Remove the old image file.
+               var imageRef = storageRef.child(oldImageURL);
+               imageRef.delete().catch(function(error) {
+                  console.log('Error deleting file.');
+               });
+               /* Text CRUD */
+               var libraryRef = foo.getUserGameLibraryRef();
+               libraryRef.child(key).set({
+                  'title': title,
+                  'imageURL': imageid,
+                  'desc': desc,
+                  'reldate': reldate,
+                  'price': price,
+                  'system': system,
+                  'genre': genre
+               });
             });
 
-      //Remove the old image file.
-      var imageRef = storageRef.child(oldImageURL);
-      imageRef.delete().catch(function(error) {
-         console.log('Error deleting file.');
-      });
+
    }
 
 
 
-   /* Text CRUD */
+   /* Text CRUD *
    var libraryRef = foo.getUserGameLibraryRef();
    libraryRef.child(key).set({
       'title': title,
@@ -400,7 +436,7 @@ foo.editGameData = function(key, oldImageURL, newImageFile, title, desc, reldate
       'price': price,
       'system': system,
       'genre': genre
-   });
+   });*/
 }
 
 
@@ -468,7 +504,7 @@ foo.startFirebaseQuery = function() {
  * Function: Starts listening for new games and populates the game list.
  */
 foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
-   libraryRef.once('value', function(snapshot) {
+   /*libraryRef.once('value', function(snapshot) {
           var exists = (snapshot.val() !== null);
           if(exists == false){
             var table = document.getElementById('game_library');
@@ -479,6 +515,7 @@ foo.fetchUserGameLibrary = function(libraryRef, libraryElement) {
             librarySection.append(newOne);
           }
         });
+        */
 
    libraryRef.on('child_added', function(data) {
       var key = data.key;
